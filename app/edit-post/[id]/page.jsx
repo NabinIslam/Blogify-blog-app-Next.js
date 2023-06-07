@@ -51,7 +51,7 @@ const EditPost = async ({ params }) => {
   return (
     <main>
       <div className="container mx-auto py-20">
-        <h1 className="text-center font-bold text-4xl">What's on your mind?</h1>
+        <h1 className="text-center font-bold text-4xl">Edit your post</h1>
         <form
           className="max-w-md mx-auto my-10"
           action=""
@@ -76,7 +76,7 @@ const EditPost = async ({ params }) => {
             <Textarea
               id="content"
               name="content"
-              rows={6}
+              rows={10}
               defaultValue={post.content}
               required
             />

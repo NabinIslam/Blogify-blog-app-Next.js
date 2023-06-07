@@ -60,7 +60,7 @@ const PostBlog = () => {
             <div className="mb-2 block">
               <Label htmlFor="content" value="Content" />
             </div>
-            <Textarea id="content" name="content" rows={6} required />
+            <Textarea id="content" name="content" rows={10} required />
           </div>
           <Button gradientDuoTone="purpleToBlue" type="submit">
             Post
