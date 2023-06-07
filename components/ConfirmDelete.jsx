@@ -4,9 +4,9 @@ import { Button, Modal } from 'flowbite-react';
 import React from 'react';
 import { toast } from 'react-hot-toast';
 
-const ConfirmDelete = ({ showModal, setShowModal, id }) => {
+const ConfirmDelete = ({ showModal, setShowModal, deletingPostId }) => {
   const handleDeletePost = () => {
-    fetch(`http://localhost:3000/api/v1/blogs/${id}`, {
+    fetch(`http://localhost:3000/api/v1/blogs/${deletingPostId}`, {
       method: 'DELETE',
     })
       .then(res => res.json())
@@ -19,7 +19,9 @@ const ConfirmDelete = ({ showModal, setShowModal, id }) => {
 
   return (
     <Modal
-      onClose={() => {}}
+      onClose={() => {
+        setShowModal(false);
+      }}
       show={showModal}
       popup
       size="md"

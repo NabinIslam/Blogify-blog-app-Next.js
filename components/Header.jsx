@@ -75,7 +75,7 @@ const Header = () => {
                 </Button>
               </Link>
             )}
-            <Navbar.Toggle />
+            {/* <Navbar.Toggle /> */}
           </div>
           {/* <Navbar.Collapse>
             <Link href="/">Home</Link>

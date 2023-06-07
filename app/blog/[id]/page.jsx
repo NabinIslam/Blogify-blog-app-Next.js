@@ -1,3 +1,5 @@
+'use client';
+
 const getData = async params => {
   const { id } = params;
 
@@ -13,15 +15,17 @@ const getData = async params => {
 const BlogDetail = async ({ params }) => {
   const singleBlog = await getData(params);
 
+  const { title, author, content } = singleBlog;
+
   return (
     <main>
       <div className="container mx-auto py-10 px-5">
-        <h1 className="font-bold text-4xl mb-5">{singleBlog.title}</h1>
+        <h1 className="font-bold text-4xl mb-5">{title}</h1>
         <p className="mb-5">
-          <span className="font-bold">Written by:</span>{' '}
-          {singleBlog.author.name}{' '}
+          <span className="font-bold">Written by: </span>
+          {author?.name}
         </p>
-        <p>{singleBlog.content}</p>
+        <p>{content}</p>
       </div>
     </main>
   );

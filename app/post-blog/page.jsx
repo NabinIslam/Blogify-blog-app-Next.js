@@ -5,6 +5,10 @@ import { Button, Label, TextInput, Textarea } from 'flowbite-react';
 import React, { useContext } from 'react';
 import { toast } from 'react-hot-toast';
 
+export const metadata = {
+  title: 'Blogify | Post a blog',
+};
+
 const PostBlog = () => {
   const { user } = useContext(AuthContext);
 
@@ -29,7 +33,6 @@ const PostBlog = () => {
     })
       .then(res => res.json())
       .then(result => {
-        console.log(result);
 
         if (result.status === 200) {
           form.reset();
@@ -59,7 +62,9 @@ const PostBlog = () => {
             </div>
             <Textarea id="content" name="content" rows={6} required />
           </div>
-          <Button type="submit">Post</Button>
+          <Button gradientDuoTone="purpleToBlue" type="submit">
+            Post
+          </Button>
         </form>
       </div>
     </main>
