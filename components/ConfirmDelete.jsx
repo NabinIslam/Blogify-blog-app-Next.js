@@ -6,12 +6,9 @@ import { toast } from 'react-hot-toast';
 
 const ConfirmDelete = ({ showModal, setShowModal, deletingPostId }) => {
   const handleDeletePost = () => {
-    fetch(
-      `https://blogify-blog-mo3759n8a-nabinislam.vercel.app/api/v1/blogs/${deletingPostId}`,
-      {
-        method: 'DELETE',
-      }
-    )
+    fetch(`http://localhost:3000/api/v1/blogs/${deletingPostId}`, {
+      method: 'DELETE',
+    })
       .then(res => res.json())
       .then(data => {
         if (data.acknowledged) {

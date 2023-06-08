@@ -20,7 +20,7 @@ const PostBlog = () => {
       author: { name: user.displayName, email: user.email },
     };
 
-    fetch('https://blogify-blog-mo3759n8a-nabinislam.vercel.app/api/v1/blogs', {
+    fetch('http://localhost:3000/api/v1/blogs', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
