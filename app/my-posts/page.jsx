@@ -7,13 +7,16 @@ import Link from 'next/link';
 import { useContext, useState } from 'react';
 
 const getData = async email => {
-  const res = await fetch(`/api/v1/blogs/email/${email}`);
-
-  if (!res.ok) {
+  try {
+    const res = await fetch(`/api/v1/blogs/email/${email}`);
+    return res.json();
+  } catch (error) {
     throw new Error('Failed to fetch data');
   }
 
-  return res.json();
+  // if (!res.ok) {
+
+  // }
 };
 
 const MyPosts = async () => {
