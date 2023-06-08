@@ -24,7 +24,7 @@ const MyPosts = async () => {
   const usersBlogs = await getData(user?.email);
 
   return (
-    <main className="py-20 ">
+    <main className="py-20">
       <div className="container mx-auto">
         <h1 className="text-center font-bold text-4xl mb-20">Your Posts</h1>
         {usersBlogs.length === 0 ? (
