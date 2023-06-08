@@ -1,10 +1,14 @@
 'use client';
 
+import { AuthContext } from '@/context/AuthContext';
 import { Button, Card } from 'flowbite-react';
 import Link from 'next/link';
+import { useContext } from 'react';
 import { BsArrowRight } from 'react-icons/bs';
 
 const BlogCard = ({ blog }) => {
+  const { user } = useContext(AuthContext);
+
   const { _id, title, content, author } = blog;
 
   return (
@@ -19,7 +23,7 @@ const BlogCard = ({ blog }) => {
         <span className="font-bold">Posted by: </span>
         {author?.name}
       </p>
-      <Link href={`/blog/${_id}`}>
+      <Link href={user ? `/blog/${_id}` : '/login'}>
         <Button color="gray">
           <p>Read more</p>
           <BsArrowRight className="ml-2" />
