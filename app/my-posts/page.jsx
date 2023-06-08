@@ -7,7 +7,9 @@ import Link from 'next/link';
 import { useContext, useState } from 'react';
 
 const getData = async email => {
-  const res = await fetch(`http://localhost:3000/api/v1/blogs/email/${email}`);
+  const res = await fetch(
+    `https://blogify-blog-mo3759n8a-nabinislam.vercel.app/api/v1/blogs/email/${email}`
+  );
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');

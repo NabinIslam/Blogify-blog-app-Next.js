@@ -8,7 +8,9 @@ import { toast } from 'react-hot-toast';
 const getData = async params => {
   const { id } = params;
 
-  const res = await fetch(`http://localhost:3000/api/v1/blogs/${id}`);
+  const res = await fetch(
+    `https://blogify-blog-mo3759n8a-nabinislam.vercel.app/api/v1/blogs/${id}`
+  );
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -32,13 +34,16 @@ const EditPost = async ({ params }) => {
 
     const editedPost = { title, content };
 
-    fetch(`http://localhost:3000/api/v1/blogs/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(editedPost),
-    })
+    fetch(
+      `https://blogify-blog-mo3759n8a-nabinislam.vercel.app/api/v1/blogs/${id}`,
+      {
+        method: 'PATCH',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(editedPost),
+      }
+    )
       .then(res => res.json())
       .then(data => {
         if (data.acknowledged) {
