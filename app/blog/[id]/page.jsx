@@ -3,7 +3,7 @@
 const getData = async params => {
   const { id } = params;
 
-  const res = await fetch(`../api/v1/blogs/${id}`);
+  const res = await fetch(`/api/v1/blogs/${id}`);
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');

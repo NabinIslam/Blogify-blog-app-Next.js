@@ -3,7 +3,7 @@
 import BlogCard from '@/components/BlogCard';
 
 const getData = async () => {
-  const res = await fetch('../api/v1/blogs');
+  const res = await fetch('/api/v1/blogs');
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');

@@ -20,7 +20,7 @@ const PostBlog = () => {
       author: { name: user.displayName, email: user.email },
     };
 
-    fetch('../api/v1/blogs', {
+    fetch('/api/v1/blogs', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
