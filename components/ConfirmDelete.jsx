@@ -6,7 +6,7 @@ import { toast } from 'react-hot-toast';
 
 const ConfirmDelete = ({ showModal, setShowModal, deletingPostId }) => {
   const handleDeletePost = () => {
-    fetch(`http://localhost:3000/api/v1/blogs/${deletingPostId}`, {
+    fetch(`/api/v1/blogs/${deletingPostId}`, {
       method: 'DELETE',
     })
       .then(res => res.json())

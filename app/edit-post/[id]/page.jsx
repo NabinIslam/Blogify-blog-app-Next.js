@@ -8,7 +8,7 @@ import { toast } from 'react-hot-toast';
 const getData = async params => {
   const { id } = params;
 
-  const res = await fetch(`http://localhost:3000/api/v1/blogs/${id}`);
+  const res = await fetch(`/api/v1/blogs/${id}`);
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -32,7 +32,7 @@ const EditPost = async ({ params }) => {
 
     const editedPost = { title, content };
 
-    fetch(`http://localhost:3000/api/v1/blogs/${id}`, {
+    fetch(`/api/v1/blogs/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',
