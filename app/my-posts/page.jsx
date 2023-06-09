@@ -33,7 +33,7 @@ const MyPosts = async () => {
             <Link className="underline" href="/post-blog">
               Click here
             </Link>{' '}
-            to post a blog .
+            to post a blog.
           </h1>
         ) : (
           <Table>
