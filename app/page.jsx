@@ -1,9 +1,10 @@
 'use client';
 
 import BlogCard from '@/components/BlogCard';
+import { GET } from './api/v1/blogs/route';
 
 const getData = async () => {
-  const res = await fetch('/api/v1/blogs');
+  const res = await fetch(GET);
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
