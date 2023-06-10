@@ -21,7 +21,7 @@ const MyPosts = async () => {
   const [deletingPostId, setDeletingPostId] = useState(null);
   const { user } = useContext(AuthContext);
 
-  const usersBlogs = await getData(user?.email);
+  const usersBlogs = user ? await getData(user?.email) : null;
 
   return (
     <main className="py-20">
