@@ -1,19 +1,27 @@
 'use client';
 
 import BlogCard from '@/components/BlogCard';
+import { useEffect, useState } from 'react';
 
-const getData = async () => {
-  const res = await fetch('/api/v1/blogs');
+// const getData = async () => {
+//   const res = await fetch('/api/v1/blogs');
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
+//   if (!res.ok) {
+//     throw new Error('Failed to fetch data');
+//   }
 
-  return res.json();
-};
+//   return res.json();
+// };
 
-const HomePage = async () => {
-  const blogs = await getData();
+const HomePage = () => {
+  // const blogs = await getData();
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/v1/blogs')
+      .then(res => res.json())
+      .then(data => setBlogs(data));
+  }, []);
 
   return (
     <main className="py-20">
