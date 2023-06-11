@@ -16,10 +16,15 @@ import { useEffect, useState } from 'react';
 const HomePage = () => {
   // const blogs = await getData();
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetch('/api/v1/blogs')
-      .then(res => res.json())
+      .then(res => {
+        setLoading(true);
+        res.json();
+        setLoading(false);
+      })
       .then(data => setBlogs(data));
   }, []);
 
