@@ -1,22 +1,16 @@
 'use client';
 
 import BlogCard from '@/components/BlogCard';
-import LoadingSpinner from '@/components/LoadingSpinner';
 import { useEffect, useState } from 'react';
 
 const HomePage = () => {
   const [blogs, setBlogs] = useState([]);
-  const [isloading, setIsloading] = useState(false);
 
   useEffect(() => {
     fetch('/api/v1/blogs')
       .then(res => res.json())
       .then(data => setBlogs(data));
   }, []);
-
-  if (isloading) {
-    return <LoadingSpinner />;
-  }
 
   return (
     <main className="py-20">
