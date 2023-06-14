@@ -3,28 +3,12 @@
 import BlogCard from '@/components/BlogCard';
 import { useEffect, useState } from 'react';
 
-// const getData = async () => {
-//   const res = await fetch('/api/v1/blogs');
-
-//   if (!res.ok) {
-//     throw new Error('Failed to fetch data');
-//   }
-
-//   return res.json();
-// };
-
 const HomePage = () => {
-  // const blogs = await getData();
   const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetch('/api/v1/blogs')
-      .then(res => {
-        setLoading(true);
-        res.json();
-        setLoading(false);
-      })
+      .then(res => res.json())
       .then(data => setBlogs(data));
   }, []);
 
