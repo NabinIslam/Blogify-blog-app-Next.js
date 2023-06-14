@@ -6,7 +6,6 @@ import { Poppins } from 'next/font/google';
 import AuthProvider from '@/context/AuthContext';
 import { Toaster } from 'react-hot-toast';
 import FooterComponent from '@/components/FooterComponent';
-import Head from 'next/head';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const poppins = Poppins({
@@ -24,9 +23,6 @@ const queryClient = new QueryClient();
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Head>
-        <link rel="icon" href="/assets/favicon.png" sizes="any" />
-      </Head>
       <body className={poppins.className} suppressHydrationWarning={true}>
         <QueryClientProvider client={queryClient}>
           <AuthProvider>
