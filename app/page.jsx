@@ -1,16 +1,27 @@
 'use client';
 
 import BlogCard from '@/components/BlogCard';
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import Loading from './loading';
+// import { useEffect, useState } from 'react';
 
 const HomePage = () => {
-  const [blogs, setBlogs] = useState([]);
+  // const [blogs, setBlogs] = useState([]);
 
-  useEffect(() => {
-    fetch('/api/v1/blogs')
-      .then(res => res.json())
-      .then(data => setBlogs(data));
-  }, []);
+  // useEffect(() => {
+  //   fetch('/api/v1/blogs')
+  //     .then(res => res.json())
+  //     .then(data => setBlogs(data));
+  // }, []);
+
+  const { data: blogs = [], isLoading } = useQuery({
+    queryKey: ['blogs'],
+    queryFn: () => fetch('/api/v1/blogs').then(res => res.json()),
+  });
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <main className="py-20">
