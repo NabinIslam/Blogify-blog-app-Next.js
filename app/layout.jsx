@@ -12,7 +12,7 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: 'Blogify',
+  title: "Blogify | World's no. 1 blog app",
   description: 'Worlds no. 1 blog site',
 };
 
