@@ -25,7 +25,7 @@ const Login = () => {
     <div className="py-24">
       <div className="container mx-auto">
         <form className="flex flex-col gap-4 max-w-md mx-auto">
-          <div>
+          {/* <div>
             <div className="mb-2 block">
               <Label htmlFor="email1" value="Your email" />
             </div>
@@ -53,7 +53,7 @@ const Login = () => {
             <div className="flex-grow border-t border-gray-400"></div>
             <span className="flex-shrink mx-4 text-gray-400">OR</span>
             <div className="flex-grow border-t border-gray-400"></div>
-          </div>
+          </div> */}
           <GoogleButton
             className="mx-auto"
             type="dark"
