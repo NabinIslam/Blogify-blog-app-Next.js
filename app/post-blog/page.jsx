@@ -6,11 +6,6 @@ import React, { useContext } from 'react';
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 
-export const metadata = {
-  title: 'Blogify | Post a blog',
-  description: 'Worlds no. 1 blog site',
-};
-
 const PostBlog = () => {
   const { user } = useContext(AuthContext);
   const { handleSubmit, reset, register } = useForm();
