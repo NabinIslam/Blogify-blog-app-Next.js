@@ -17,7 +17,7 @@ const HomePage = () => {
   return (
     <main className="py-20">
       <div className="container mx-auto px-5">
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <section className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {blogs.map(blog => (
             <BlogCard key={blog._id} blog={blog} />
           ))}

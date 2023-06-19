@@ -1,40 +1,57 @@
 'use client';
 
 import { AuthContext } from '@/context/AuthContext';
-import { Button, Label, TextInput, Textarea } from 'flowbite-react';
+import { Button, FileInput, Label, TextInput, Textarea } from 'flowbite-react';
 import React, { useContext } from 'react';
 import { toast } from 'react-hot-toast';
+import { useForm } from 'react-hook-form';
 
 const PostBlog = () => {
   const { user } = useContext(AuthContext);
+  const { handleSubmit, reset, register } = useForm();
 
-  async function handlePost(event) {
-    event.preventDefault();
-    const form = event.target;
-    const title = form.title.value;
-    const content = form.content.value;
+  const imgHostKey = process.env.NEXT_PUBLIC_imgBB_api_key;
 
-    const post = {
-      title,
-      content,
-      author: { name: user.displayName, email: user.email },
-    };
+  const handlePost = data => {
+    const image = data.image[0];
 
-    fetch('/api/v1/blogs', {
+    const formData = new FormData();
+
+    formData.append('image', image);
+
+    const url = `https://api.imgbb.com/1/upload?key=${imgHostKey}`;
+
+    fetch(url, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(post),
+      body: formData,
     })
       .then(res => res.json())
-      .then(result => {
-        if (result.status === 200) {
-          form.reset();
-          toast.success('Post added successfully');
+      .then(imgData => {
+        if (imgData.success) {
+          const post = {
+            title: data.title,
+            content: data.content,
+            image: imgData.data.url,
+            author: { name: user.displayName, email: user.email },
+          };
+
+          fetch('/api/v1/blogs', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(post),
+          })
+            .then(res => res.json())
+            .then(result => {
+              if (result.status === 200) {
+                reset();
+                toast.success('Post added successfully');
+              }
+            });
         }
       });
-  }
+  };
 
   return (
     <main>
@@ -43,20 +60,27 @@ const PostBlog = () => {
         <form
           className="max-w-md mx-auto my-10"
           action=""
-          onSubmit={handlePost}
+          onSubmit={handleSubmit(handlePost)}
         >
           <div>
             <div className="mb-2 block">
               <Label htmlFor="title" value="Title" />
             </div>
-            <TextInput id="title" name="title" type="text" required />
+            <TextInput {...register('title')} type="text" required />
           </div>
           <div className="max-w-md mb-5" id="textarea">
             <div className="mb-2 block">
               <Label htmlFor="content" value="Content" />
             </div>
-            <Textarea id="content" name="content" rows={10} required />
+            <Textarea {...register('content')} rows={10} required />
           </div>
+          <div className="mb-2 block">
+            <div className="mb-2 block">
+              <Label htmlFor="uploadThumnail" value="Upload Thumbnail" />
+            </div>
+            <FileInput {...register('image')} required />
+          </div>
+
           <Button gradientDuoTone="purpleToBlue" type="submit">
             Post
           </Button>
