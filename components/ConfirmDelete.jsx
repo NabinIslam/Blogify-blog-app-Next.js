@@ -4,7 +4,12 @@ import { Button, Modal } from 'flowbite-react';
 import React from 'react';
 import { toast } from 'react-hot-toast';
 
-const ConfirmDelete = ({ showModal, setShowModal, deletingPostId }) => {
+const ConfirmDelete = ({
+  showModal,
+  setShowModal,
+  deletingPostId,
+  refetch,
+}) => {
   const handleDeletePost = () => {
     fetch(`/api/v1/blogs/${deletingPostId}`, {
       method: 'DELETE',
@@ -12,6 +17,7 @@ const ConfirmDelete = ({ showModal, setShowModal, deletingPostId }) => {
       .then(res => res.json())
       .then(data => {
         if (data.acknowledged) {
+          refetch();
           toast.success('Post deleted successfully');
         }
       });

@@ -1,33 +1,49 @@
 'use client';
 
+import Loading from '@/app/loading';
 import ConfirmDelete from '@/components/ConfirmDelete';
 import { AuthContext } from '@/context/AuthContext';
+import { useQuery } from '@tanstack/react-query';
 import { Table } from 'flowbite-react';
 import Link from 'next/link';
 import { useContext, useState } from 'react';
 
-const getData = async email => {
-  const res = await fetch(`/api/v1/blogs/email/${email}`);
+// const getData = async email => {
+//   const res = await fetch(`/api/v1/blogs/email/${email}`);
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
+//   if (!res.ok) {
+//     throw new Error('Failed to fetch data');
+//   }
 
-  return res.json();
-};
+//   return res.json();
+// };
 
-const MyPostsPage = async () => {
+const MyPostsPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [deletingPostId, setDeletingPostId] = useState(null);
   const { user } = useContext(AuthContext);
 
-  const usersBlogs = user ? await getData(user?.email) : [];
+  const {
+    data: myPosts = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ['myPosts'],
+    queryFn: () =>
+      fetch(`/api/v1/blogs/email/${user?.email}`).then(res => res.json()),
+  });
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  // const usersBlogs = user ? await getData(user?.email) : [];
 
   return (
     <main className="py-20">
       <div className="container mx-auto">
         <h1 className="text-center font-bold text-4xl mb-20">Your Posts</h1>
-        {usersBlogs.length === 0 ? (
+        {myPosts.length === 0 ? (
           <h1 className="text-center">
             You have no post.{' '}
             <Link className="underline" href="/post-blog">
@@ -43,7 +59,7 @@ const MyPostsPage = async () => {
               <Table.HeadCell>action</Table.HeadCell>
             </Table.Head>
             <Table.Body className="divide-y">
-              {usersBlogs.map(({ title, _id }) => (
+              {myPosts.map(({ title, _id }) => (
                 <Table.Row
                   key={_id}
                   className="bg-white dark:border-gray-700 dark:bg-gray-800"
@@ -83,6 +99,7 @@ const MyPostsPage = async () => {
         showModal={showModal}
         setShowModal={setShowModal}
         deletingPostId={deletingPostId}
+        refetch={refetch}
       />
     </main>
   );
