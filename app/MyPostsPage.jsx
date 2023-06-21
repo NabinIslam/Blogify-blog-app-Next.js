@@ -17,6 +17,7 @@ const MyPostsPage = () => {
     data: myPosts = [],
     isLoading,
     refetch,
+    isFetching,
   } = useQuery({
     queryKey: ['myPosts'],
     queryFn: () =>
@@ -24,6 +25,10 @@ const MyPostsPage = () => {
   });
 
   if (isLoading) {
+    return <Loading />;
+  }
+
+  if (isFetching) {
     return <Loading />;
   }
 
