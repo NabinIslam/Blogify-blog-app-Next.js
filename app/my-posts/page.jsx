@@ -1,4 +1,4 @@
-import MyPostsPage from '@/pages/MyPostsPage';
+import MyPostsPage from '@/app/MyPostsPage';
 import React from 'react';
 
 export const metadata = {
