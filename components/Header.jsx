@@ -8,22 +8,23 @@ import { getAuth, signOut } from 'firebase/auth';
 import app from '@/firebase/firebase.config';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
+import Image from 'next/image';
 
 const Header = () => {
   const { user } = useContext(AuthContext);
+  const router = useRouter();
 
   const auth = getAuth(app);
-
-  const router = useRouter();
 
   return (
     <div className="shadow">
       <div className="container mx-auto">
         <Navbar fluid={true} rounded={true}>
-          <Link href="/">
-            <span className="self-center whitespace-nowrap text-xl font-extrabold dark:text-white">
-              Blogify
-            </span>
+          <Link
+            className="hover:bg-slate-200 hover:duration-200 duration-100 p-2 rounded-lg"
+            href="/"
+          >
+            <Image src="/logo.png" height={30} width={100} alt="Logo" />
           </Link>
 
           <div className="flex md:order-2">

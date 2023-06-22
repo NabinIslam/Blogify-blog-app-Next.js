@@ -2,21 +2,21 @@
 
 import { AuthContext } from '@/context/AuthContext';
 import { Button, FileInput, Label, TextInput, Textarea } from 'flowbite-react';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
+import Loading from './loading';
 
 const PostBlogPage = () => {
   const { user } = useContext(AuthContext);
   const { handleSubmit, reset, register } = useForm();
+  const [loading, setLoading] = useState(false);
 
   const imgHostKey = process.env.NEXT_PUBLIC_imgBB_api_key;
 
   const handlePost = data => {
     const image = data.image[0];
-
     const formData = new FormData();
-
     formData.append('image', image);
 
     const url = `https://api.imgbb.com/1/upload?key=${imgHostKey}`;
@@ -25,7 +25,10 @@ const PostBlogPage = () => {
       method: 'POST',
       body: formData,
     })
-      .then(res => res.json())
+      .then(res => {
+        setLoading(true);
+        return res.json();
+      })
       .then(imgData => {
         if (imgData.success) {
           const post = {
@@ -47,11 +50,16 @@ const PostBlogPage = () => {
               if (result.status === 200) {
                 reset();
                 toast.success('Post added successfully');
+                setLoading(false);
               }
             });
         }
       });
   };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <main>
