@@ -1,5 +1,3 @@
-'use client';
-
 const getData = async params => {
   const { id } = params;
 
