@@ -5,6 +5,7 @@ import AuthProvider from '@/context/AuthContext';
 import { Toaster } from 'react-hot-toast';
 import FooterComponent from '@/components/FooterComponent';
 import TanstackQueryProvider from './TanstackQueryProvider';
+import ScrollToTopButton from './ScrollToTopButton';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -47,6 +48,7 @@ export default function RootLayout({ children }) {
             }}
           />
         </TanstackQueryProvider>
+        <ScrollToTopButton />
       </body>
     </html>
   );
