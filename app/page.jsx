@@ -17,17 +17,17 @@ const HomePage = () => {
 
   let content = blogs.map(blog => <BlogCard key={blog._id} blog={blog} />);
 
-  if (latest) {
-    content = blogs
-      .sort((a, b) => a.createdAt.localeCompare(b.createdAt))
-      .map(blog => <BlogCard key={blog._id} blog={blog} />);
-  }
+  latest
+    ? (content = blogs
+        .sort((a, b) => a.createdAt.localeCompare(b.createdAt))
+        .map(blog => <BlogCard key={blog._id} blog={blog} />))
+    : latest;
 
-  if (oldest) {
-    content = blogs
-      .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
-      .map(blog => <BlogCard key={blog._id} blog={blog} />);
-  }
+  oldest
+    ? (content = blogs
+        .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+        .map(blog => <BlogCard key={blog._id} blog={blog} />))
+    : oldest;
 
   if (isLoading) {
     return <Loading />;
