@@ -28,7 +28,7 @@ const BlogCard = ({ blog }) => {
         </div>
         <div className="p-5">
           <Link href={user ? `/blog/${_id}` : '/login'}>
-            <h5 className="text-gray-900 font-bold text-2xl tracking-tight mb-2 hover:underline">
+            <h5 className="text-gray-900 font-bold text-xl tracking-tight mb-2 hover:underline">
               {title}
             </h5>
           </Link>
