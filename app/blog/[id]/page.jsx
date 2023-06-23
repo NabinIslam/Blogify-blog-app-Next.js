@@ -1,19 +1,19 @@
-const getData = async params => {
-  const { id } = params;
+'use client';
 
-  const res = await fetch(`/api/v1/blogs/${id}`);
+import Loading from '@/app/loading';
+import { useQuery } from '@tanstack/react-query';
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  return res.json();
-};
-
-const BlogDetail = async ({ params }) => {
-  const singleBlog = await getData(params);
+const BlogDetail = ({ params }) => {
+  const { data: singleBlog = [], isLoading } = useQuery({
+    queryKey: ['singleBlog'],
+    queryFn: () => fetch(`/api/v1/blogs/${params.id}`).then(res => res.json()),
+  });
 
   const { title, author, content } = singleBlog;
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <main>

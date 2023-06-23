@@ -13,7 +13,6 @@ const poppins = Poppins({
 
 export const metadata = {
   title: "Blogify | World's no. 1 blogging app",
-  description: 'Worlds no. 1 blog site',
 };
 
 export default function RootLayout({ children }) {
