@@ -33,7 +33,7 @@ const BlogCard = ({ blog }) => {
             </h5>
           </Link>
           <p className="font-normal text-gray-700 mb-3">
-            {content.substring(0, 150) + '...'}
+            {content.substring(0, 100) + '...'}
           </p>
           <Link href={user ? `/blog/${_id}` : '/login'}>
             <Button color="gray">
