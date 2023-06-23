@@ -25,7 +25,7 @@ const BlogDetail = ({ params }) => {
             width="0"
             height="0"
             sizes="100vw"
-            className="w-full h-auto"
+            className="w-full h-auto shadow-2xl rounded-2xl"
           />
         </div>
         <h1 className="font-bold text-4xl mb-5">{title}</h1>
