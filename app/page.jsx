@@ -21,14 +21,12 @@ const HomePage = () => {
     content = blogs
       .sort((a, b) => a.createdAt.localeCompare(b.createdAt))
       .map(blog => <BlogCard key={blog._id} blog={blog} />);
-  } else if (oldest) {
+  }
+
+  if (oldest) {
     content = blogs
       .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
       .map(blog => <BlogCard key={blog._id} blog={blog} />);
-  } else {
-    content = content = blogs.map(blog => (
-      <BlogCard key={blog._id} blog={blog} />
-    ));
   }
 
   if (isLoading) {
