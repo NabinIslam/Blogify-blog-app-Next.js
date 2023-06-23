@@ -6,7 +6,7 @@ const FilterBlogs = ({ setlatest, setOldest }) => {
   const handleBlogFilter = event => {
     event.preventDefault();
 
-    if (event.target.vaue === 'latest') {
+    if (event.target.value === 'latest') {
       setlatest(true);
     } else {
       setlatest(false);
