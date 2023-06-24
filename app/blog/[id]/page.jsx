@@ -5,12 +5,20 @@ import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 
 const BlogDetail = ({ params }) => {
-  const { data: singleBlog = [], isLoading } = useQuery({
+  const {
+    data: singleBlog = [],
+    isLoading,
+    isInitialLoading,
+  } = useQuery({
     queryKey: ['singleBlog'],
     queryFn: () => fetch(`/api/v1/blogs/${params.id}`).then(res => res.json()),
   });
 
   const { title, author, content, image } = singleBlog;
+
+  if (isInitialLoading) {
+    return <Loading />;
+  }
 
   if (isLoading) {
     return <Loading />;
