@@ -15,11 +15,11 @@ const BlogCard = ({ blog }) => {
   const { _id, title, content, image } = blog;
 
   return (
-    <div className="bg-white min-h-[480px] shadow-md border border-gray-200 rounded-lg max-w-sm">
+    <div className="bg-white min-h-[480px] shadow-xl border border-gray-200 rounded-lg max-w-sm mx-auto">
       <div className="relative h-56 max-w-full">
         <Link href={user ? `/blog/${_id}` : '/login'}>
           <Image
-            className="rounded-t-lg max-w-full h-52"
+            className="rounded-t-lg max-w-full h-52 "
             src={image}
             fill
             priority
