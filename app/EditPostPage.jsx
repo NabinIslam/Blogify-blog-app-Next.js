@@ -49,7 +49,7 @@ const EditPostPage = ({ id }) => {
 
   return (
     <main>
-      <div className="container mx-auto py-20">
+      <div className="container mx-auto py-20 px-4">
         <h1 className="text-center font-bold text-4xl">Edit your post</h1>
         <form
           className="max-w-md mx-auto my-10"

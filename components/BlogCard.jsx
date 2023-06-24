@@ -13,7 +13,7 @@ const BlogCard = ({ blog }) => {
   const { _id, title, content, image } = blog;
 
   return (
-    <div className="bg-white h-[480px] shadow-md border border-gray-200 rounded-lg max-w-sm">
+    <div className="bg-white min-h-[480px] shadow-md border border-gray-200 rounded-lg max-w-sm">
       <div className="relative h-56 max-w-full">
         <Link href={user ? `/blog/${_id}` : '/login'}>
           <Image
