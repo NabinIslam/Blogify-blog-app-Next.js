@@ -27,7 +27,7 @@ const BlogCard = ({ blog }) => {
           />
         </Link>
         <button
-          className="absolute bg-white right-0 m-2 p-1 rounded-full cursor-pointer"
+          className="absolute bg-white right-0 m-2 p-1 rounded-full cursor-pointer shadow-xl"
           onClick={() => setFavorite(!favorite)}
         >
           {favorite ? (
