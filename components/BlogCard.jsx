@@ -4,11 +4,13 @@ import { AuthContext } from '@/context/AuthContext';
 import { Button } from 'flowbite-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { BsArrowRight } from 'react-icons/bs';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 
 const BlogCard = ({ blog }) => {
   const { user } = useContext(AuthContext);
+  const [favorite, setFavorite] = useState(false);
 
   const { _id, title, content, image } = blog;
 
@@ -24,6 +26,16 @@ const BlogCard = ({ blog }) => {
             alt=""
           />
         </Link>
+        <button
+          className="absolute bg-white right-0 m-2 p-1 rounded-full cursor-pointer"
+          onClick={() => setFavorite(!favorite)}
+        >
+          {favorite ? (
+            <AiFillHeart className="text-xl" />
+          ) : (
+            <AiOutlineHeart className="text-xl" />
+          )}
+        </button>
       </div>
       <div className="p-5">
         <Link href={user ? `/blog/${_id}` : '/login'}>

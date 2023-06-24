@@ -53,6 +53,9 @@ const Header = () => {
                 <Link href="/my-posts">
                   <Dropdown.Item>My Posts</Dropdown.Item>
                 </Link>
+                <Link href="/favorites">
+                  <Dropdown.Item>Favorites</Dropdown.Item>
+                </Link>
                 <Dropdown.Divider />
                 <Dropdown.Item
                   onClick={() => {
