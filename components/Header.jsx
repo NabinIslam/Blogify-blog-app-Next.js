@@ -17,7 +17,7 @@ const Header = () => {
   const auth = getAuth(app);
 
   return (
-    <div className="shadow">
+    <header className="shadow sticky top-0 z-50">
       <div className="container mx-auto">
         <Navbar fluid={true} rounded={true}>
           <Link
@@ -87,7 +87,7 @@ const Header = () => {
           </Navbar.Collapse> */}
         </Navbar>
       </div>
-    </div>
+    </header>
   );
 };
 
