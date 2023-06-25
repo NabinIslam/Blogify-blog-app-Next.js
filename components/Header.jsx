@@ -3,18 +3,15 @@
 import { AuthContext } from '@/context/AuthContext';
 import { Avatar, Button, Dropdown, Navbar } from 'flowbite-react';
 import Link from 'next/link';
-import React, { useContext } from 'react';
-import { getAuth, signOut } from 'firebase/auth';
-import app from '@/firebase/firebase.config';
+import React, { useContext, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { toast } from 'react-hot-toast';
 import Image from 'next/image';
+import ConfirmLogout from './ConfirmLogout';
 
 const Header = () => {
   const { user } = useContext(AuthContext);
   const router = useRouter();
-
-  const auth = getAuth(app);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <header className="shadow sticky top-0 z-50">
@@ -57,18 +54,7 @@ const Header = () => {
                   <Dropdown.Item>Favorites</Dropdown.Item>
                 </Link>
                 <Dropdown.Divider />
-                <Dropdown.Item
-                  onClick={() => {
-                    signOut(auth)
-                      .then(() => {
-                        router.push('/login');
-                        toast('Logout successful 🎉');
-                      })
-                      .catch(error => {
-                        console.error(error);
-                      });
-                  }}
-                >
+                <Dropdown.Item onClick={() => setShowModal(true)}>
                   Sign out
                 </Dropdown.Item>
               </Dropdown>
@@ -87,6 +73,11 @@ const Header = () => {
           </Navbar.Collapse> */}
         </Navbar>
       </div>
+      <ConfirmLogout
+        showModal={showModal}
+        setShowModal={setShowModal}
+        router={router}
+      />
     </header>
   );
 };
