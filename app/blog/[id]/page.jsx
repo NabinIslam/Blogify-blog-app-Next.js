@@ -8,7 +8,7 @@ const BlogDetail = ({ params }) => {
   const {
     data: singleBlog = [],
     isLoading,
-    isInitialLoading,
+    isFetching,
   } = useQuery({
     queryKey: ['singleBlog'],
     queryFn: () => fetch(`/api/v1/blogs/${params.id}`).then(res => res.json()),
@@ -16,7 +16,7 @@ const BlogDetail = ({ params }) => {
 
   const { title, author, content, image } = singleBlog;
 
-  if (isInitialLoading) {
+  if (isFetching) {
     return <Loading />;
   }
 
