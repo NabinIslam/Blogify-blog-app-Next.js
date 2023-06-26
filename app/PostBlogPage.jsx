@@ -2,15 +2,24 @@
 
 import { AuthContext } from '@/context/AuthContext';
 import { Button, FileInput, Label, TextInput, Textarea } from 'flowbite-react';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import Loading from './loading';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import dynamic from 'next/dynamic';
 
 const PostBlogPage = () => {
   const { user } = useContext(AuthContext);
   const { handleSubmit, reset, register } = useForm();
   const [loading, setLoading] = useState(false);
+  const [content, setContent] = useState(``);
+
+  const OptimizedReactQuill = useMemo(
+    () => dynamic(() => import('react-quill'), { ssr: false }),
+    []
+  );
 
   const imgHostKey = process.env.NEXT_PUBLIC_imgBB_api_key;
 
@@ -33,7 +42,7 @@ const PostBlogPage = () => {
         if (imgData.success) {
           const post = {
             title: data.title,
-            content: data.content,
+            content: content,
             image: imgData.data.url,
             author: { name: user.displayName, email: user.email },
           };
@@ -80,9 +89,15 @@ const PostBlogPage = () => {
             <div className="mb-2 block">
               <Label htmlFor="content" value="Content" />
             </div>
-            <Textarea {...register('content')} rows={10} required />
+            <OptimizedReactQuill
+              className="min-h-52"
+              theme="snow"
+              value={content}
+              onChange={setContent}
+            />
+            {/* <Textarea {...register('content')} rows={10} required /> */}
           </div>
-          <div className="mb-2 block">
+          <div className="mb-2 mt-14 block">
             <div className="mb-2 block">
               <Label htmlFor="uploadThumnail" value="Upload Thumbnail" />
             </div>

@@ -36,7 +36,7 @@ const BlogDetail = ({ params }) => {
             className="w-full h-auto shadow-2xl rounded-2xl"
           />
         </div>
-        <h1 className="font-bold text-4xl mb-5">{title}</h1>
+        <h1 className="font-bold text-2xl lg:text-4xl mb-5">{title}</h1>
         <p className="mb-5">
           <span className="font-bold">Written by: </span>
           {author?.name}
