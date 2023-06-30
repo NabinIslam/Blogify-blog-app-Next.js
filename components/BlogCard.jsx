@@ -14,6 +14,30 @@ const BlogCard = ({ blog }) => {
 
   const { _id, title, content, image } = blog;
 
+  const favBlog = {
+    title,
+    content,
+    image,
+    user: { name: user?.name, email: user?.email },
+  };
+
+  const handleAddToFav = () => {
+    fetch('/api/v1/favorites', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(favBlog),
+    })
+      .then(res => res.json())
+      .then(result => {
+        if (result.status === 200) {
+          toast.success('Post added to favorites successfully');
+          setFavorite(true);
+        }
+      });
+  };
+
   return (
     <div className="bg-white min-h-[480px] shadow-xl border border-gray-200 rounded-lg max-w-sm mx-auto">
       <div className="relative h-56 max-w-full">
@@ -26,16 +50,18 @@ const BlogCard = ({ blog }) => {
             alt=""
           />
         </Link>
-        <button
-          className="absolute bg-white right-0 m-2 p-1 rounded-full cursor-pointer shadow-xl"
-          onClick={() => setFavorite(!favorite)}
-        >
-          {favorite ? (
-            <AiFillHeart className="text-xl" />
-          ) : (
-            <AiOutlineHeart className="text-xl" />
-          )}
-        </button>
+        {user && (
+          <button
+            className="absolute bg-white right-0 m-2 p-1 rounded-full cursor-pointer shadow-xl"
+            onClick={() => handleAddToFav()}
+          >
+            {favorite ? (
+              <AiFillHeart className="text-xl" />
+            ) : (
+              <AiOutlineHeart className="text-xl" />
+            )}
+          </button>
+        )}
       </div>
       <div className="p-5">
         <Link href={user ? `/blog/${_id}` : '/login'}>
@@ -46,7 +72,7 @@ const BlogCard = ({ blog }) => {
         <p className="font-normal text-gray-700 mb-3">
           {content.substring(0, 100) + '...'}
         </p>
-        <Link href={user ? `/blog/${_id}` : '/login'}>
+        <Link href={`/blog/${_id}`}>
           <Button color="gray">
             <p>Read more</p>
             <BsArrowRight className="ml-2" />

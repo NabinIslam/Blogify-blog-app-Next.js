@@ -9,8 +9,8 @@ import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import Link from 'next/link';
 
-const Login = () => {
-  const { signInWithGoogle, signIn } = useContext(AuthContext);
+const Register = () => {
+  const { signInWithGoogle, signUp } = useContext(AuthContext);
   const { handleSubmit, reset, register } = useForm();
   const router = useRouter();
 
@@ -23,12 +23,12 @@ const Login = () => {
       .catch(err => console.error(err));
   };
 
-  const handleSignIn = data => {
-    signIn(data.email, data.password)
+  const handleSignUp = data => {
+    signUp(data.email, data.password)
       .then(() => {
         reset();
         router.push('/');
-        toast('Login successful 🎉');
+        toast('Registration successful 🎉');
       })
       .catch(err => console.error(err));
   };
@@ -38,7 +38,7 @@ const Login = () => {
       <div className="container mx-auto">
         <form
           className="flex flex-col gap-4 max-w-md mx-auto"
-          onSubmit={handleSubmit(handleSignIn)}
+          onSubmit={handleSubmit(handleSignUp)}
         >
           <div>
             <div className="mb-2 block">
@@ -48,7 +48,7 @@ const Login = () => {
               {...register('email')}
               id="email"
               type="email"
-              placeholder="Your email address"
+              placeholder="email@example.com"
               required={true}
             />
           </div>
@@ -64,12 +64,12 @@ const Login = () => {
             />
           </div>
           <Button gradientDuoTone="purpleToBlue" type="submit">
-            Login
+            Register
           </Button>
           <p className="text-sm text-center">
-            Don't have an account?{' '}
-            <Link className="font-bold hover:underline" href="/register">
-              Register
+            Already have an account?{' '}
+            <Link className="font-bold hover:underline" href="/login">
+              Login
             </Link>
           </p>
           <div className="relative flex py-5 items-center">
@@ -88,4 +88,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
