@@ -10,6 +10,7 @@ import ConfirmLogout from './ConfirmLogout';
 
 const Header = () => {
   const { user } = useContext(AuthContext);
+  console.log(user);
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
 
@@ -32,18 +33,21 @@ const Header = () => {
                 label={
                   <Avatar
                     className="mr-2 md:m-0"
-                    alt={user.displayName}
-                    img={user.photoURL}
+                    alt={user?.displayName}
+                    img={user?.photoURL}
                     rounded={true}
                   />
                 }
               >
                 <Dropdown.Header>
-                  <span className="block text-sm">{user.displayName}</span>
+                  <span className="block text-sm">{user?.displayName}</span>
                   <span className="block truncate text-sm font-medium">
-                    {user.email}
+                    {user?.email}
                   </span>
                 </Dropdown.Header>
+                <Link href="/profile">
+                  <Dropdown.Item>Profile</Dropdown.Item>
+                </Link>
                 <Link href="/post-blog">
                   <Dropdown.Item>Post</Dropdown.Item>
                 </Link>
