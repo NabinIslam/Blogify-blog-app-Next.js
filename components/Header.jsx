@@ -10,7 +10,6 @@ import ConfirmLogout from './ConfirmLogout';
 
 const Header = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
 

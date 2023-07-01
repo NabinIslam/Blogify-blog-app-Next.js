@@ -11,6 +11,7 @@ const ProfilePage = () => {
   const { handleSubmit, register, reset } = useForm();
   const { updateUserProfile } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
+  const { user } = useContext(AuthContext);
 
   const handleUpdateProfile = data => {
     updateUserProfile(data.fullName).then(() => {
@@ -35,7 +36,13 @@ const ProfilePage = () => {
             <div className="mb-2 block">
               <Label htmlFor="fullName" value="Your full name" />
             </div>
-            <TextInput {...register('fullName')} type="text" required />
+            <TextInput
+              {...register('fullName')}
+              type="text"
+              value={user?.displayName}
+              placeholder="Enter your full name"
+              required
+            />
           </div>
 
           <Button gradientDuoTone="purpleToBlue" type="submit">

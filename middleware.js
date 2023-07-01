@@ -1,19 +1,22 @@
-import { AuthContext } from '@/context/AuthContext';
 import { NextResponse } from 'next/server';
-import React from 'react';
+import { NextRequest } from 'next/server';
+import { useContext } from 'react';
+import { AuthContext } from './context/AuthContext';
 
+// This function can be marked `async` if using `await` inside
 export function middleware(request) {
-  const context = React.createContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
-  const { user } = context;
+  const path = request.nextUrl.pathname;
 
-  if (user) {
-    return NextResponse.redirect(new URL('/post-blog', request.url));
-  } else {
-    return NextResponse.redirect(new URL('/login', request.url));
+  const publicPath = path === '/login' || path === '/register';
+
+  if (!user) {
+    return NextResponse.redirect(new URL('/login', request.nextUrl));
   }
 }
 
+// See "Matching Paths" below to learn more
 export const config = {
-  matcher: '/post-blog',
+  matcher: ['/post-blog', '/my-posts'],
 };
