@@ -2,23 +2,27 @@
 
 import { AuthContext } from '@/context/AuthContext';
 import { Button, Label, TextInput } from 'flowbite-react';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import GoogleButton from 'react-google-button';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import Link from 'next/link';
+import Loading from './loading';
 
 const RegisterPage = () => {
   const { signInWithGoogle, signUp } = useContext(AuthContext);
   const { handleSubmit, reset, register } = useForm();
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then(() => {
+        setLoading(true);
         router.push('/');
         toast('Login successful 🎉');
+        setLoading(false);
       })
       .catch(err => console.error(err));
   };
@@ -26,12 +30,16 @@ const RegisterPage = () => {
   const handleSignUp = data => {
     signUp(data.email, data.password)
       .then(() => {
+        setLoading(true);
         reset();
         router.push('/');
         toast('Registration successful 🎉');
+        setLoading(false);
       })
       .catch(err => console.error(err));
   };
+
+  if (loading) return <Loading />;
 
   return (
     <div className="py-24">

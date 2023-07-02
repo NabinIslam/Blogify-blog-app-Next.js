@@ -16,13 +16,9 @@ const BlogDetailPage = ({ params }) => {
 
   const { title, author, content, image } = singleBlog;
 
-  if (isFetching) {
-    return <Loading />;
-  }
+  if (isFetching) return <Loading />;
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  if (isLoading) return <Loading />;
 
   return (
     <main>

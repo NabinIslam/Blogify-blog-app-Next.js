@@ -29,9 +29,7 @@ const HomePage = () => {
         .map(blog => <BlogCard key={blog._id} blog={blog} />))
     : oldest;
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  if (isLoading) return <Loading />;
 
   return (
     <main className="py-20">

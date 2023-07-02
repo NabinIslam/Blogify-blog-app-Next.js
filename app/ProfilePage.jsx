@@ -18,10 +18,11 @@ const ProfilePage = () => {
       setLoading(true);
       reset();
       toast.success('Profile updated successfully');
+      setLoading(false);
     });
   };
 
-  if (loading) <Loading />;
+  if (loading) return <Loading />;
 
   return (
     <main>
