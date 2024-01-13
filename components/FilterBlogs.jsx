@@ -2,13 +2,8 @@
 
 import { Select } from 'flowbite-react';
 
-const FilterBlogs = ({ setlatest, setOldest }) => {
-  const handleBlogFilter = event => {
-    event.preventDefault();
-
-    event.target.value === 'latest' ? setlatest(true) : setlatest(false);
-    event.target.value === 'oldest' ? setOldest(true) : setOldest(false);
-  };
+const FilterBlogs = ({ setlatest, setOldest, setSortBy }) => {
+  const handleBlogFilter = event => setSortBy(event.target.value);
 
   return (
     <section className="flex justify-between items-center py-4">

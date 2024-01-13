@@ -41,7 +41,7 @@ const BlogCard = ({ blog }) => {
   return (
     <div className="bg-white min-h-[480px] shadow-xl border border-gray-200 rounded-lg max-w-sm mx-auto">
       <div className="relative h-56 max-w-full">
-        <Link href={user ? `/blog/${_id}` : '/login'}>
+        <Link href={`/blog/${_id}`}>
           <Image
             className="rounded-t-lg max-w-full h-52 "
             src={image}
@@ -64,7 +64,7 @@ const BlogCard = ({ blog }) => {
         )}
       </div>
       <div className="p-5">
-        <Link href={user ? `/blog/${_id}` : '/login'}>
+        <Link href={`/blog/${_id}`}>
           <h5 className="text-gray-900 font-bold text-xl tracking-tight mb-2 hover:underline">
             {title}
           </h5>

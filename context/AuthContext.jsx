@@ -15,11 +15,10 @@ import { createContext, useEffect, useState } from 'react';
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-
+  const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
 
-  const auth = getAuth(app);
+  const [user, setUser] = useState(null);
 
   //function for sign in with google
   const signInWithGoogle = () => signInWithPopup(auth, googleProvider);

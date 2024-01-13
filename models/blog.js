@@ -6,6 +6,10 @@ const blogSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    slug: {
+      type: String,
+      required: true,
+    },
     content: {
       type: String,
       required: true,
@@ -15,7 +19,7 @@ const blogSchema = new mongoose.Schema(
       required: true,
     },
     author: {
-      name: {
+      username: {
         type: String,
         required: true,
       },
