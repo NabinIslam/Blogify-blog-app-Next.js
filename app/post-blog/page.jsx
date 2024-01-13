@@ -1,15 +1,11 @@
 'use client';
+
 import { useUser } from '@clerk/nextjs';
 import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, FileInput, Label, TextInput } from 'flowbite-react';
-import handlePost from '@/actions/handleAddPost';
 import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
-
-export const metadata = {
-  title: 'Blogify | Post a blog',
-};
 
 const PostBlog = () => {
   const { user } = useUser();
@@ -70,7 +66,9 @@ const PostBlog = () => {
   return (
     <main>
       <div className="container mx-auto py-20 px-4">
-        <h1 className="text-center font-bold text-4xl">What's on your mind?</h1>
+        <h1 className="text-center font-bold text-4xl">
+          What&apos;s on your mind?
+        </h1>
         <form
           className="max-w-md mx-auto my-10"
           onSubmit={handleSubmit(handlePost)}
@@ -86,14 +84,6 @@ const PostBlog = () => {
               <Label htmlFor="content" value="Content" />
             </div>
             <ReactQuill theme="snow" value={content} onChange={setContent} />
-            {/* <Editor
-          editorState={editorState}
-          toolbarClassName="toolbarClassName"
-          wrapperClassName="h-60"
-          editorClassName="border  px-4"
-          onEditorStateChange={onEditorStateChange}
-        /> */}
-            {/* <Textarea {...register('content')} rows={10} required /> */}
           </div>
 
           <div className="mb-2 block">
