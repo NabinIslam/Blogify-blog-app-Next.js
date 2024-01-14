@@ -2,7 +2,7 @@
 
 import { Select } from 'flowbite-react';
 
-const FilterBlogs = ({ setlatest, setOldest, setSortBy }) => {
+const FilterBlogs = ({ setSortBy }) => {
   const handleBlogFilter = event => setSortBy(event.target.value);
 
   return (
@@ -12,6 +12,7 @@ const FilterBlogs = ({ setlatest, setOldest, setSortBy }) => {
       <div className="flex items-center">
         <span className="mr-2">Sort By:</span>
         <Select id="countries" onChange={handleBlogFilter}>
+          <option value="">Default</option>
           <option value="latest">Latest</option>
           <option value="oldest">Oldest</option>
         </Select>

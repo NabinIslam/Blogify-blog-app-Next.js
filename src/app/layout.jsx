@@ -1,10 +1,9 @@
 import Header from '@/components/Header';
 import './globals.css';
 import { Poppins } from 'next/font/google';
-import AuthProvider from '@/context/AuthContext';
 import { Toaster } from 'react-hot-toast';
 import FooterComponent from '@/components/FooterComponent';
-import TanstackQueryProvider from './TanstackQueryProvider';
+import TanstackQueryProvider from '../providers/TanstackQueryProvider';
 import ScrollToTopButton from '../ui/ScrollToTopButton';
 import { ClerkProvider } from '@clerk/nextjs';
 
@@ -23,11 +22,9 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <body className={poppins.className} suppressHydrationWarning={true}>
           <TanstackQueryProvider>
-            <AuthProvider>
-              <Header />
-              {children}
-              <FooterComponent />
-            </AuthProvider>
+            <Header />
+            {children}
+            <FooterComponent />
             <Toaster
               position="bottom-right"
               toastOptions={{

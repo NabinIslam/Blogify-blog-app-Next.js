@@ -1,15 +1,12 @@
 'use client';
 
-import { AuthContext } from '@/context/AuthContext';
 import { Avatar, Button, Dropdown, Navbar } from 'flowbite-react';
 import Link from 'next/link';
-import React, { useContext, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { UserButton, auth, useClerk, useUser } from '@clerk/nextjs';
+import { useClerk, useUser } from '@clerk/nextjs';
 
 const Header = () => {
-  // const { user } = useContext(AuthContext);
   const { user } = useUser();
   const { signOut } = useClerk();
   const router = useRouter();
@@ -27,6 +24,7 @@ const Header = () => {
               style={{ height: 'auto', width: 'auto' }}
               height={30}
               width={100}
+              priority
               alt="Logo"
             />
           </Link>

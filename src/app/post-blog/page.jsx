@@ -6,6 +6,8 @@ import { useForm } from 'react-hook-form';
 import { Button, FileInput, Label, TextInput } from 'flowbite-react';
 import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
+import slugify from 'slugify';
+import toast from 'react-hot-toast';
 
 const PostBlog = () => {
   const { user } = useUser();
@@ -36,15 +38,17 @@ const PostBlog = () => {
         if (imgData.success) {
           const post = {
             title: data.title,
+            slug: slugify(data.title),
             content: content,
             image: imgData.data.url,
             author: {
-              username: user.username,
-              email: user.primaryEmailAddress.emailAddress,
+              username: user?.username,
+              email: user?.primaryEmailAddress.emailAddress,
+              image: user?.imageUrl,
             },
           };
 
-          fetch('/api/blogs', {
+          fetch('https://blogify-r01e.onrender.com/api/posts', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -53,7 +57,7 @@ const PostBlog = () => {
           })
             .then(res => res.json())
             .then(result => {
-              if (result.status === 200) {
+              if (result.success) {
                 reset();
                 setContent('');
                 toast.success('Post added successfully');
@@ -69,23 +73,24 @@ const PostBlog = () => {
         <h1 className="text-center font-bold text-4xl">
           What&apos;s on your mind?
         </h1>
-        <form
-          className="max-w-md mx-auto my-10"
-          onSubmit={handleSubmit(handlePost)}
-        >
+        <form className="my-10" onSubmit={handleSubmit(handlePost)}>
           <div className="mb-5">
             <div className="mb-2 block">
               <Label htmlFor="title" value="Title" />
             </div>
             <TextInput {...register('title')} type="text" required />
           </div>
-          <div className="max-w-md mb-5 h-96" id="textarea">
+          <div className="mb-5 h-96" id="textarea">
             <div className="mb-2 block">
               <Label htmlFor="content" value="Content" />
             </div>
-            <ReactQuill theme="snow" value={content} onChange={setContent} />
+            <ReactQuill
+              className="h-[300px] w-full block"
+              theme="snow"
+              value={content}
+              onChange={setContent}
+            />
           </div>
-
           <div className="mb-2 block">
             <div className="mb-2 block">
               <Label htmlFor="uploadThumnail" value="Upload Thumbnail" />

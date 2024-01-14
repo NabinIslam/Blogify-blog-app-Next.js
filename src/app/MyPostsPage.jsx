@@ -2,16 +2,16 @@
 
 import Loading from '@/app/loading';
 import ConfirmDelete from '@/components/ConfirmDelete';
-import { AuthContext } from '@/context/AuthContext';
+import { useUser } from '@clerk/nextjs';
 import { useQuery } from '@tanstack/react-query';
 import { Table } from 'flowbite-react';
 import Link from 'next/link';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 
 const MyPostsPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [deletingPostId, setDeletingPostId] = useState(null);
-  const { user } = useContext(AuthContext);
+  const { user } = useUser();
 
   const {
     data: myPosts = [],
