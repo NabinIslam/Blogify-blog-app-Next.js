@@ -9,6 +9,7 @@ import 'react-quill/dist/quill.snow.css';
 import slugify from 'slugify';
 import toast from 'react-hot-toast';
 import { useQuery } from '@tanstack/react-query';
+import Loading from '../loading';
 
 const PostBlog = () => {
   const { user } = useUser();
@@ -19,7 +20,11 @@ const PostBlog = () => {
     []
   );
 
-  const { data: categories = [] } = useQuery({
+  const {
+    data: categories = [],
+    isLoading,
+    isFetching,
+  } = useQuery({
     queryKey: ['categories'],
     queryFn: () =>
       fetch('https://blogify-r01e.onrender.com/api/categories').then(res =>
@@ -83,6 +88,8 @@ const PostBlog = () => {
         }
       });
   };
+
+  if (isLoading) return <Loading />;
 
   return (
     <main>
