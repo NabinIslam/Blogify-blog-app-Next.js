@@ -29,6 +29,8 @@ const PostBlog = () => {
 
   const imgHostKey = process.env.NEXT_PUBLIC_imgBB_api_key;
 
+  console.log(imgHostKey);
+
   const handlePost = data => {
     const image = data.image[0];
     const formData = new FormData();
