@@ -112,7 +112,7 @@ const PostBlog = () => {
             <div className="mb-2 block">
               <Label htmlFor="category" value="Category" />
             </div>
-            <Select {...register('category')} required>
+            <Select {...register('category')}>
               {categories?.categories?.map(category => (
                 <option value={category._id} key={category._id}>
                   {category.name}
