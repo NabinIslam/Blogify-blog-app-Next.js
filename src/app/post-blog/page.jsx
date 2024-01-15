@@ -63,8 +63,6 @@ const PostBlog = () => {
             },
           };
 
-          console.log(post);
-
           fetch('https://blogify-r01e.onrender.com/api/posts', {
             method: 'POST',
             headers: {
