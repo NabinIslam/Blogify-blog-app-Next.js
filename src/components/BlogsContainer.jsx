@@ -2,7 +2,10 @@ import BlogCard from './BlogCard';
 
 async function getPosts(sortBy = '') {
   const res = await fetch(
-    `https://blogify-r01e.onrender.com/api/posts/?sort=${sortBy}`
+    `https://blogify-r01e.onrender.com/api/posts/?sort=${sortBy}`,
+    {
+      cache: 'no-cache',
+    }
   );
 
   if (!res.ok) throw new Error('Failed to fetch data');

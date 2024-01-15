@@ -32,7 +32,7 @@ const BlogDetails = async ({ params }) => {
             width={70}
           />
 
-          <h3 className='text-lg mt-1'>{author?.username}</h3>
+          <h3 className="text-lg mt-1">{author?.username}</h3>
 
           <h4>{createdAt}</h4>
 
@@ -49,7 +49,7 @@ const BlogDetails = async ({ params }) => {
             />
           </div>
 
-          <div>{parse(content)}</div>
+          <div className="text-left">{parse(content)}</div>
         </div>
       </div>
     </main>

@@ -3,11 +3,12 @@
 import { useUser } from '@clerk/nextjs';
 import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button, FileInput, Label, TextInput } from 'flowbite-react';
+import { Button, FileInput, Label, Select, TextInput } from 'flowbite-react';
 import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
 import slugify from 'slugify';
 import toast from 'react-hot-toast';
+import { useQuery } from '@tanstack/react-query';
 
 const PostBlog = () => {
   const { user } = useUser();
@@ -17,6 +18,14 @@ const PostBlog = () => {
     () => dynamic(() => import('react-quill'), { ssr: false }),
     []
   );
+
+  const { data: categories = [] } = useQuery({
+    queryKey: ['categories'],
+    queryFn: () =>
+      fetch('https://blogify-r01e.onrender.com/api/categories').then(res =>
+        res.json()
+      ),
+  });
 
   const imgHostKey = process.env.NEXT_PUBLIC_imgBB_api_key;
 
@@ -41,6 +50,7 @@ const PostBlog = () => {
             slug: slugify(data.title),
             content: content,
             image: imgData.data.url,
+            category: data.category,
             author: {
               username: user?.username,
               email: user?.primaryEmailAddress.emailAddress,
@@ -62,7 +72,12 @@ const PostBlog = () => {
                 setContent('');
                 toast.success('Post added successfully');
               }
-            });
+            })
+            .catch(error =>
+              toast.error(
+                `Could not post the article :( Something went wrong!!`
+              )
+            );
         }
       });
   };
@@ -91,6 +106,19 @@ const PostBlog = () => {
               onChange={setContent}
             />
           </div>
+          <div className="mb-5">
+            <div className="mb-2 block">
+              <Label htmlFor="category" value="Category" />
+            </div>
+            <Select {...register('category')} required>
+              {categories?.categories?.map(category => (
+                <option value={category._id} key={category._id}>
+                  {category.name}
+                </option>
+              ))}
+            </Select>
+          </div>
+
           <div className="mb-2 block">
             <div className="mb-2 block">
               <Label htmlFor="uploadThumnail" value="Upload Thumbnail" />

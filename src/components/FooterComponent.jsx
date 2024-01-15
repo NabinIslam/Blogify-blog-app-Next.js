@@ -10,7 +10,7 @@ const FooterComponent = () => {
           <div className="w-full text-center">
            
             <Footer.Divider />
-            <Footer.Copyright href="#" by="Blogify" year={2023} />
+            <Footer.Copyright href="#" by="Blogify" year={2024} />
           </div>
         </Footer>
    

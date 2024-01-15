@@ -1,10 +1,10 @@
 'use client';
 
-import { Dna } from 'react-loader-spinner';
+import { ColorRing } from 'react-loader-spinner';
 
 const Loading = () => (
   <div className="h-screen flex justify-center items-center">
-    <Dna />
+    <ColorRing />
   </div>
 );
 

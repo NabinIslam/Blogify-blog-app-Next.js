@@ -1,14 +1,17 @@
-// import { initializeApp } from 'firebase/app';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from 'firebase/app';
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-// const firebaseConfig = {
-//   apiKey: process.env.NEXT_PUBLIC_FIREBASE_apiKey,
-//   authDomain: process.env.NEXT_PUBLIC_FIREBASE_authDomain,
-//   projectId: process.env.NEXT_PUBLIC_FIREBASE_projectId,
-//   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_storageBucket,
-//   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_messagingSenderId,
-//   appId: process.env.NEXT_PUBLIC_FIREBASE_appId,
-// };
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: 'AIzaSyDdoP6NwL4AFVCNnZP-X3J5LWbRa13RrIk',
+  authDomain: 'blogify-4a819.firebaseapp.com',
+  projectId: 'blogify-4a819',
+  storageBucket: 'blogify-4a819.appspot.com',
+  messagingSenderId: '299993702074',
+  appId: '1:299993702074:web:7d4fb7baea243450836c83',
+};
 
-// const app = initializeApp(firebaseConfig);
-
-// export default app;
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
