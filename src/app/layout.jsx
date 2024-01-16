@@ -6,6 +6,8 @@ import FooterComponent from '@/components/FooterComponent';
 import TanstackQueryProvider from '../providers/TanstackQueryProvider';
 import ScrollToTopButton from '../ui/ScrollToTopButton';
 import { ClerkProvider } from '@clerk/nextjs';
+import { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -18,38 +20,40 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body className={poppins.className} suppressHydrationWarning={true}>
-          <TanstackQueryProvider>
-            <Header />
-            {children}
-            <FooterComponent />
-            <Toaster
-              position="bottom-right"
-              toastOptions={{
-                // Define default options
-                className: '',
-                duration: 5000,
-                style: {
-                  background: '#363636',
-                  color: '#fff',
-                },
-
-                // Default options for specific types
-                success: {
-                  duration: 3000,
-                  theme: {
-                    primary: 'green',
-                    secondary: 'black',
+    <SkeletonTheme baseColor="#f5f5f5" highlightColor="#fff">
+      <ClerkProvider>
+        <html lang="en">
+          <body className={poppins.className} suppressHydrationWarning={true}>
+            <TanstackQueryProvider>
+              <Header />
+              {children}
+              <FooterComponent />
+              <Toaster
+                position="top-center"
+                toastOptions={{
+                  // Define default options
+                  className: '',
+                  duration: 5000,
+                  style: {
+                    background: '#363636',
+                    color: '#fff',
                   },
-                },
-              }}
-            />
-          </TanstackQueryProvider>
-          <ScrollToTopButton />
-        </body>
-      </html>
-    </ClerkProvider>
+
+                  // Default options for specific types
+                  success: {
+                    duration: 3000,
+                    theme: {
+                      primary: 'green',
+                      secondary: 'black',
+                    },
+                  },
+                }}
+              />
+            </TanstackQueryProvider>
+            <ScrollToTopButton />
+          </body>
+        </html>
+      </ClerkProvider>
+    </SkeletonTheme>
   );
 }

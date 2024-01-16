@@ -1,6 +1,6 @@
 'use client';
 
-import Loading from '@/app/loading';
+import LoadingSkeleton from '@/app/loading';
 import ConfirmDelete from '@/components/ConfirmDelete';
 import { useUser } from '@clerk/nextjs';
 import { useQuery } from '@tanstack/react-query';
@@ -25,11 +25,11 @@ const MyPostsPage = () => {
   });
 
   if (isLoading) {
-    return <Loading />;
+    return <LoadingSkeleton />;
   }
 
   if (isFetching) {
-    return <Loading />;
+    return <LoadingSkeleton />;
   }
 
   return (

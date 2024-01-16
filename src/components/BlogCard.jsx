@@ -50,7 +50,7 @@ const BlogCard = ({ post }) => {
         />
 
         <div>
-          <h6 className="text-sm font-bold leading-5">{author?.name}</h6>
+          <h6 className="text-sm font-bold leading-5 -mb-1">{author?.name}</h6>
           <h6 className="text-sm">Author</h6>
         </div>
       </div>

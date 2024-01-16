@@ -9,7 +9,7 @@ import 'react-quill/dist/quill.snow.css';
 import slugify from 'slugify';
 import toast from 'react-hot-toast';
 import { useQuery } from '@tanstack/react-query';
-import Loading from '../loading';
+import Loading from './loading';
 
 const PostBlog = () => {
   const { user } = useUser();

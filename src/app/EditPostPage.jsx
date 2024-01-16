@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Button, Label, TextInput, Textarea } from 'flowbite-react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
-import Loading from './loading';
+import LoadingSkeleton from './loading';
 import { useQuery } from '@tanstack/react-query';
 
 const EditPostPage = ({ id }) => {
@@ -44,7 +44,7 @@ const EditPostPage = ({ id }) => {
   };
 
   if (loading) {
-    return <Loading />;
+    return <LoadingSkeleton />;
   }
 
   return (
