@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-
 import FilterBlogs from '@/components/FilterBlogs';
 import BlogsContainer from '@/components/BlogsContainer';
 

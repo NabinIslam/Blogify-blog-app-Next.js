@@ -32,9 +32,11 @@ const BlogDetails = async ({ params }) => {
             width={70}
           />
 
-          <h3 className="text-lg mt-1">{author?.username}</h3>
+          <h3 className="text-lg mt-1 text-slate-500 font-semibold">
+            {author?.name}
+          </h3>
 
-          <h4>{createdAt}</h4>
+          <h4 className="text-sm text-slate-500">{Date(createdAt)}</h4>
 
           <h1 className="font-bold text-2xl lg:text-3xl mb-5 mt-5">{title}</h1>
 

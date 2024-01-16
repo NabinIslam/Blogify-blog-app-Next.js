@@ -17,7 +17,7 @@ const BlogsContainer = async ({ sortBy }) => {
   const data = await getPosts(sortBy);
 
   return (
-    <section className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-5">
+    <section className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-10">
       {data?.posts?.map(post => (
         <BlogCard key={post._id} post={post} />
       ))}

@@ -58,6 +58,7 @@ const PostBlog = () => {
             category: data.category,
             author: {
               username: user?.username,
+              name: user?.fullName,
               email: user?.primaryEmailAddress.emailAddress,
               image: user?.imageUrl,
             },
