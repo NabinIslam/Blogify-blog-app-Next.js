@@ -20,7 +20,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <SkeletonTheme baseColor="#f5f5f5" highlightColor="#fff">
+    <SkeletonTheme baseColor="#F0F0F0" highlightColor="#fff">
       <ClerkProvider>
         <html lang="en">
           <body className={poppins.className} suppressHydrationWarning={true}>

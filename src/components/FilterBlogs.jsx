@@ -20,8 +20,8 @@ const FilterBlogs = ({ setSortBy, setFilterBy }) => {
       <h4 className="font-bold text-2xl">Blogs</h4>
 
       <div className="flex items-center gap-2">
-        <span>Category:</span>
-        <Select id="timeSort" onChange={handleCategoryFilter}>
+        <span className='text-sm'>Category:</span>
+        <Select id="timeSort" sizing="sm" onChange={handleCategoryFilter}>
           <option value="">All</option>
           {categories?.categories?.map(category => (
             <option value={category.slug} key={category._id}>
@@ -29,8 +29,8 @@ const FilterBlogs = ({ setSortBy, setFilterBy }) => {
             </option>
           ))}
         </Select>
-        <span>Sort By:</span>
-        <Select id="filter" onChange={handleBlogFilter}>
+        <span className='text-sm'>Sort By:</span>
+        <Select id="filter" sizing="sm" onChange={handleBlogFilter}>
           <option value="latest">Latest</option>
           <option value="oldest">Oldest</option>
         </Select>
