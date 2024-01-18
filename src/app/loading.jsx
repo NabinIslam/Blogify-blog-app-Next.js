@@ -1,6 +1,6 @@
 import Skeleton from 'react-loading-skeleton';
 
-const LoadingSkeleton = () => (
+const Loading = () => (
   <section className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-10">
     {/* skeleton card */}
     <div className="border p-2 rounded-xl flex flex-col justify-between">
@@ -21,6 +21,7 @@ const LoadingSkeleton = () => (
         </div>
       </div>
     </div>
+
     {/* skeleton card */}
     <div className="border p-2 rounded-xl flex flex-col justify-between">
       <div>
@@ -40,6 +41,7 @@ const LoadingSkeleton = () => (
         </div>
       </div>
     </div>
+
     {/* skeleton card */}
     <div className="border p-2 rounded-xl flex flex-col justify-between">
       <div>
@@ -59,6 +61,7 @@ const LoadingSkeleton = () => (
         </div>
       </div>
     </div>
+
     {/* skeleton card */}
     <div className="border p-2 rounded-xl flex flex-col justify-between">
       <div>
@@ -81,4 +84,4 @@ const LoadingSkeleton = () => (
   </section>
 );
 
-export default LoadingSkeleton;
+export default Loading;

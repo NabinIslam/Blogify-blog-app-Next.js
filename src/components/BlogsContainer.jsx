@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import BlogCard from './BlogCard';
-import LoadingSkeleton from '@/app/loading';
+import Loading from '@/app/loading';
 
 async function getPosts(sortBy = '', filterQuery = '') {
   const res = await fetch(

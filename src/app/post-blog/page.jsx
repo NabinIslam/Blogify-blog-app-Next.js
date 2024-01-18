@@ -1,7 +1,7 @@
 'use client';
 
 import { useUser } from '@clerk/nextjs';
-import { useMemo, useState } from 'react';
+import { Suspense, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, FileInput, Label, Select, TextInput } from 'flowbite-react';
 import dynamic from 'next/dynamic';
@@ -96,47 +96,49 @@ const PostBlog = () => {
         <h1 className="text-center font-bold text-4xl">
           What&apos;s on your mind?
         </h1>
-        <form className="my-10" onSubmit={handleSubmit(handlePost)}>
-          <div className="mb-5">
-            <div className="mb-2 block">
-              <Label htmlFor="title" value="Title" />
+        <Suspense fallback={<Loading />}>
+          <form className="my-10" onSubmit={handleSubmit(handlePost)}>
+            <div className="mb-5">
+              <div className="mb-2 block">
+                <Label htmlFor="title" value="Title" />
+              </div>
+              <TextInput {...register('title')} type="text" required />
             </div>
-            <TextInput {...register('title')} type="text" required />
-          </div>
-          <div className="mb-5 h-96" id="textarea">
-            <div className="mb-2 block">
-              <Label htmlFor="content" value="Content" />
+            <div className="mb-5 h-96" id="textarea">
+              <div className="mb-2 block">
+                <Label htmlFor="content" value="Content" />
+              </div>
+              <ReactQuill
+                className="h-[300px] w-full block"
+                theme="snow"
+                value={content}
+                onChange={setContent}
+              />
             </div>
-            <ReactQuill
-              className="h-[300px] w-full block"
-              theme="snow"
-              value={content}
-              onChange={setContent}
-            />
-          </div>
-          <div className="mb-5">
-            <div className="mb-2 block">
-              <Label htmlFor="category" value="Category" />
+            <div className="mb-5">
+              <div className="mb-2 block">
+                <Label htmlFor="category" value="Category" required />
+              </div>
+              <Select {...register('category')}>
+                {categories?.categories?.map(category => (
+                  <option value={category._id} key={category._id}>
+                    {category.name}
+                  </option>
+                ))}
+              </Select>
             </div>
-            <Select {...register('category')}>
-              {categories?.categories?.map(category => (
-                <option value={category._id} key={category._id}>
-                  {category.name}
-                </option>
-              ))}
-            </Select>
-          </div>
 
-          <div className="mb-2 block">
             <div className="mb-2 block">
-              <Label htmlFor="uploadThumnail" value="Upload Thumbnail" />
+              <div className="mb-2 block">
+                <Label htmlFor="uploadThumnail" value="Upload Thumbnail" />
+              </div>
+              <FileInput {...register('image')} required />
             </div>
-            <FileInput {...register('image')} required />
-          </div>
-          <Button gradientDuoTone="purpleToBlue" type="submit">
-            Post
-          </Button>
-        </form>
+            <Button gradientDuoTone="purpleToBlue" type="submit">
+              Post
+            </Button>
+          </form>
+        </Suspense>
       </div>
     </main>
   );

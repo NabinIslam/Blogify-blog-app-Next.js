@@ -16,24 +16,28 @@ const FilterBlogs = ({ setSortBy, setFilterBy }) => {
   const handleCategoryFilter = event => setFilterBy(event.target.value);
 
   return (
-    <section className="flex justify-between items-center py-4">
-      <h4 className="font-bold text-2xl">Blogs</h4>
+    <section className="flex flex-col md:flex-row gap-4 justify-between items-center py-4">
+      <h4 className="font-bold text-2xl">Articles</h4>
 
-      <div className="flex items-center gap-2">
-        <span className='text-sm'>Category:</span>
-        <Select id="timeSort" sizing="sm" onChange={handleCategoryFilter}>
-          <option value="">All</option>
-          {categories?.categories?.map(category => (
-            <option value={category.slug} key={category._id}>
-              {category.name}
-            </option>
-          ))}
-        </Select>
-        <span className='text-sm'>Sort By:</span>
-        <Select id="filter" sizing="sm" onChange={handleBlogFilter}>
-          <option value="latest">Latest</option>
-          <option value="oldest">Oldest</option>
-        </Select>
+      <div className="flex items-center justify-between gap-2">
+        <span className="flex flex-col md:flex-row items-start md:items-center gap-1">
+          <span className="text-sm">Category:</span>
+          <Select sizing="sm" onChange={handleCategoryFilter}>
+            <option value="">All</option>
+            {categories?.categories?.map(category => (
+              <option value={category.slug} key={category._id}>
+                {category.name}
+              </option>
+            ))}
+          </Select>
+        </span>
+        <span className="flex flex-col md:flex-row items-start md:items-center gap-1">
+          <span className="text-sm">Sort By:</span>
+          <Select sizing="sm" onChange={handleBlogFilter}>
+            <option value="latest">Latest</option>
+            <option value="oldest">Oldest</option>
+          </Select>
+        </span>
       </div>
     </section>
   );
