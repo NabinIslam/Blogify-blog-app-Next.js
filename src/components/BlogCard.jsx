@@ -17,7 +17,7 @@ const BlogCard = ({ post }) => {
   const formattedDate = `${monthName} ${day}, ${year}`;
 
   return (
-    <div className="border p-2 rounded-xl flex flex-col justify-between">
+    <div className="border p-2 rounded-xl flex flex-col justify-between shadow-sm">
       <div>
         <div className="relative h-52 max-w-full">
           <Link href={`/blog/${slug}`}>

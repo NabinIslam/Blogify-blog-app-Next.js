@@ -1,6 +1,6 @@
 'use client';
 
-import { Avatar, Button, Dropdown, Navbar } from 'flowbite-react';
+import { Avatar, Button, Dropdown } from 'flowbite-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -15,8 +15,8 @@ const Header = () => {
 
   return (
     <header className="border-b sticky top-0 z-50 bg-white">
-      <div className="container mx-auto flex justify-between items-center py-2">
-        <div className="basis-4/12 pl-2">
+      <div className="container mx-auto flex justify-between items-center py-2 px-2">
+        <div className="basis-4/12 pl-2 flex">
           <Link className="inline-flex" href="/">
             <Image
               className="h-6 w-auto"

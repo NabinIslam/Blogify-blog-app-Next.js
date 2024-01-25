@@ -2,37 +2,33 @@
 
 import { useUser } from '@clerk/nextjs';
 import { useQuery } from '@tanstack/react-query';
-import { Table } from 'flowbite-react';
+import { Button, Table } from 'flowbite-react';
 import Link from 'next/link';
 import { useState } from 'react';
 import Loading from './loading';
 import ConfirmDelete from '@/components/ConfirmDelete';
+import EditPostModal from '@/components/EditPostModal';
 
 const MyPostsPage = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [deletingPostId, setDeletingPostId] = useState(null);
   const { user } = useUser();
-
+  const [showPostEditModal, setShowPostEditModal] = useState(false);
+  const [showPostDeleteModal, setShowPostDeleteModal] = useState(false);
+  const [postId, setPostId] = useState(null);
   const {
     data: posts = [],
     isLoading,
-    refetch,
     isFetching,
+    refetch,
   } = useQuery({
-    queryKey: ['myPosts'],
+    queryKey: ['posts'],
     queryFn: () =>
       fetch(
         `https://blogify-r01e.onrender.com/api/posts/email/${user?.primaryEmailAddress?.emailAddress}`
       ).then(res => res.json()),
   });
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (isFetching) {
-    return <Loading />;
-  }
+  if (isFetching) return <Loading />;
+  if (isLoading) return <Loading />;
 
   return (
     <main className="py-20">
@@ -50,8 +46,8 @@ const MyPostsPage = () => {
           <Table>
             <Table.Head>
               <Table.HeadCell>Blog title</Table.HeadCell>
-              <Table.HeadCell>action</Table.HeadCell>
-              <Table.HeadCell>action</Table.HeadCell>
+              <Table.HeadCell className="text-center">action</Table.HeadCell>
+              <Table.HeadCell className="text-center">action</Table.HeadCell>
             </Table.Head>
             <Table.Body className="divide-y">
               {posts?.posts?.map(({ title, _id, slug }) => (
@@ -65,23 +61,30 @@ const MyPostsPage = () => {
                     </Link>
                   </Table.Cell>
                   <Table.Cell>
-                    <Link
-                      href={`/edit-post/${_id}`}
-                      className="font-medium text-cyan-600 hover:underline dark:text-cyan-500 cursor-pointer"
+                    <Button
+                      className="mx-auto"
+                      size="xs"
+                      color="warning"
+                      onClick={() => {
+                        setPostId(_id);
+                        setShowPostEditModal(true);
+                      }}
                     >
-                      <p>Edit</p>
-                    </Link>
+                      Edit
+                    </Button>
                   </Table.Cell>
                   <Table.Cell>
-                    <a
+                    <Button
+                      className="mx-auto"
+                      color="failure"
+                      size="xs"
                       onClick={() => {
-                        setDeletingPostId(_id);
-                        setShowModal(true);
+                        setPostId(_id);
+                        setShowPostDeleteModal(true);
                       }}
-                      className="font-medium text-red-600 hover:underline dark:text-cyan-500 cursor-pointer"
                     >
                       <p>Delete</p>
-                    </a>
+                    </Button>
                   </Table.Cell>
                 </Table.Row>
               ))}
@@ -89,11 +92,16 @@ const MyPostsPage = () => {
           </Table>
         )}
       </div>
-
+      <EditPostModal
+        showPostEditModal={showPostEditModal}
+        setShowPostEditModal={setShowPostEditModal}
+        postId={postId}
+        refetch={refetch}
+      />
       <ConfirmDelete
-        showModal={showModal}
-        setShowModal={setShowModal}
-        deletingPostId={deletingPostId}
+        showPostDeleteModal={showPostDeleteModal}
+        setShowPostDeleteModal={setShowPostDeleteModal}
+        postId={postId}
         refetch={refetch}
       />
     </main>

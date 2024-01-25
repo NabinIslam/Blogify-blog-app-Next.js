@@ -29,9 +29,9 @@ const SearchBlog = () => {
     <div className="w-full border rounded-md">
       <Combobox value={selected} onChange={setSelected}>
         <div className="relative mt-1">
-          <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left  focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
+          <div className="shadow-sm relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left  focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
             <Combobox.Input
-              className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
+              className="w-full border-none py-2 pl-3  text-sm shadow-sm text-gray-900 focus:ring-0"
               placeholder="Search article"
               displayValue={title => title.name}
               onChange={event => setQuery(event.target.value)}
@@ -60,7 +60,7 @@ const SearchBlog = () => {
                   <Combobox.Option
                     key={post._id}
                     className={({ active }) =>
-                      `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
+                      `relative cursor-pointer select-none py-2 pl-3 pr-4 ${
                         active ? 'bg-teal-600 text-white' : 'text-gray-900'
                       }`
                     }

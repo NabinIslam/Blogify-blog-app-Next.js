@@ -1,22 +1,21 @@
 'use client';
 
 import { Button, Modal } from 'flowbite-react';
-import React from 'react';
 import { toast } from 'react-hot-toast';
 
 const ConfirmDelete = ({
-  showModal,
-  setShowModal,
+  showPostDeleteModal,
+  setShowPostDeleteModal,
   deletingPostId,
   refetch,
 }) => {
   const handleDeletePost = () => {
-    fetch(`/api/v1/blogs/${deletingPostId}`, {
+    fetch(`https://blogify-r01e.onrender.com/api/posts/${deletingPostId}`, {
       method: 'DELETE',
     })
       .then(res => res.json())
-      .then(data => {
-        if (data.acknowledged) {
+      .then(result => {
+        if (result.success) {
           refetch();
           toast.success('Post deleted successfully');
         }
@@ -25,17 +24,14 @@ const ConfirmDelete = ({
 
   return (
     <Modal
-      onClose={() => {
-        setShowModal(false);
-      }}
-      show={showModal}
+      onClose={() => setShowPostDeleteModal(false)}
+      show={showPostDeleteModal}
       popup
       size="md"
     >
       <Modal.Header />
       <Modal.Body>
         <div className="text-center">
-          {/* <G className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" /> */}
           <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
             <p>Are you sure you want to delete this post?</p>
           </h3>
@@ -44,12 +40,12 @@ const ConfirmDelete = ({
               color="failure"
               onClick={() => {
                 handleDeletePost();
-                setShowModal(false);
+                setShowPostDeleteModal(false);
               }}
             >
-              Yes, I'm sure
+              Yes, I&apos;m sure
             </Button>
-            <Button color="gray" onClick={() => setShowModal(false)}>
+            <Button color="gray" onClick={() => setShowPostDeleteModal(false)}>
               <p>No, cancel</p>
             </Button>
           </div>

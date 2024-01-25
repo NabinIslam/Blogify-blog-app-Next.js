@@ -2,8 +2,9 @@ import Skeleton from 'react-loading-skeleton';
 
 const Loading = () => (
   <section className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-10">
+    
     {/* skeleton card */}
-    <div className="border p-2 rounded-xl flex flex-col justify-between">
+    <div className="border shadow-sm p-2 rounded-xl flex flex-col justify-between">
       <div>
         <div className="relative h-52 max-w-full">
           <Skeleton className="max-w-full h-full" borderRadius={8} />
@@ -23,7 +24,7 @@ const Loading = () => (
     </div>
 
     {/* skeleton card */}
-    <div className="border p-2 rounded-xl flex flex-col justify-between">
+    <div className="border shadow-sm p-2 rounded-xl flex flex-col justify-between">
       <div>
         <div className="relative h-52 max-w-full">
           <Skeleton className="max-w-full h-full" borderRadius={8} />
@@ -43,7 +44,7 @@ const Loading = () => (
     </div>
 
     {/* skeleton card */}
-    <div className="border p-2 rounded-xl flex flex-col justify-between">
+    <div className="border shadow-sm p-2 rounded-xl flex flex-col justify-between">
       <div>
         <div className="relative h-52 max-w-full">
           <Skeleton className="max-w-full h-full" borderRadius={8} />
@@ -63,7 +64,7 @@ const Loading = () => (
     </div>
 
     {/* skeleton card */}
-    <div className="border p-2 rounded-xl flex flex-col justify-between">
+    <div className="border shadow-sm p-2 rounded-xl flex flex-col justify-between">
       <div>
         <div className="relative h-52 max-w-full">
           <Skeleton className="max-w-full h-full" borderRadius={8} />
