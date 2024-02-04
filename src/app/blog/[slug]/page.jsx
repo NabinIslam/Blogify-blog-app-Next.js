@@ -3,7 +3,7 @@ import parse from 'html-react-parser';
 
 async function getPost(slug) {
   const res = await fetch(
-    `https://blogify-r01e.onrender.com/api/posts/slug/${slug}`,
+    `https://blogify-blog-app-server-production.up.railway.app/api/posts/slug/${slug}`,
     {
       cache: 'no-cache',
     }

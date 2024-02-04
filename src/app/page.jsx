@@ -4,7 +4,7 @@ import { Suspense, useState } from 'react';
 import FilterBlogs from '@/components/FilterBlogs';
 import BlogsContainer from '@/components/BlogsContainer';
 import HeroSection from '@/components/HeroSection';
-import Loading from './loading';
+import HomePostsSkeleton from './loading';
 
 const HomePage = () => {
   const [sortBy, setSortBy] = useState('');
@@ -15,7 +15,7 @@ const HomePage = () => {
       <HeroSection />
       <div className="container mx-auto px-5 py-10">
         <FilterBlogs setSortBy={setSortBy} setFilterBy={setFilterBy} />
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={<HomePostsSkeleton />}>
           <BlogsContainer sortBy={sortBy} filterBy={filterBy} />
         </Suspense>
       </div>

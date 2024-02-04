@@ -34,9 +34,9 @@ const EditPostModal = ({
   } = useQuery({
     queryKey: ['post'],
     queryFn: () =>
-      fetch(`https://blogify-r01e.onrender.com/api/posts/${postId}`).then(res =>
-        res.json()
-      ),
+      fetch(
+        `https://blogify-blog-app-server-production.up.railway.app/api/posts/${postId}`
+      ).then(res => res.json()),
   });
 
   const {
@@ -46,9 +46,9 @@ const EditPostModal = ({
   } = useQuery({
     queryKey: ['categories'],
     queryFn: () =>
-      fetch('https://blogify-r01e.onrender.com/api/categories').then(res =>
-        res.json()
-      ),
+      fetch(
+        'https://blogify-blog-app-server-production.up.railway.app/api/categories'
+      ).then(res => res.json()),
   });
   console.log(post);
   console.log(categories);

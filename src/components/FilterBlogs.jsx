@@ -7,9 +7,9 @@ const FilterBlogs = ({ setSortBy, setFilterBy }) => {
   const { data: categories = [] } = useQuery({
     queryKey: ['categories'],
     queryFn: () =>
-      fetch('https://blogify-r01e.onrender.com/api/categories').then(res =>
-        res.json()
-      ),
+      fetch(
+        'https://blogify-blog-app-server-production.up.railway.app/api/categories'
+      ).then(res => res.json()),
   });
 
   const handleBlogFilter = event => setSortBy(event.target.value);

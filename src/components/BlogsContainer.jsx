@@ -4,7 +4,7 @@ import Loading from '@/app/loading';
 
 async function getPosts(sortBy = '', filterQuery = '') {
   const res = await fetch(
-    `https://blogify-r01e.onrender.com/api/posts/?sort=${sortBy}&category=${filterQuery}`,
+    `https://blogify-blog-app-server-production.up.railway.app/api/posts/?sort=${sortBy}&category=${filterQuery}`,
     {
       cache: 'no-cache',
     }

@@ -10,9 +10,12 @@ const ConfirmDelete = ({
   refetch,
 }) => {
   const handleDeletePost = () => {
-    fetch(`https://blogify-r01e.onrender.com/api/posts/${deletingPostId}`, {
-      method: 'DELETE',
-    })
+    fetch(
+      `https://blogify-blog-app-server-production.up.railway.app/api/posts/${deletingPostId}`,
+      {
+        method: 'DELETE',
+      }
+    )
       .then(res => res.json())
       .then(result => {
         if (result.success) {
