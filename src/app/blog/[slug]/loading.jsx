@@ -10,23 +10,56 @@ const Loading = () => (
         <Skeleton className="mt-1" height={15} width={200} />
         <Skeleton className="mt-5" height={50} />
 
-        {/* 
-        <h4 className="text-sm text-slate-500">{formattedDate}</h4>
+        <Skeleton
+          className="mt-8 h-[200px] md:h-[400px] lg:h-[500px]"
+          borderRadius={8}
+        />
 
-        <h1 className="font-bold text-2xl lg:text-3xl mb-5 mt-5">{title}</h1> */}
-
-        <div className="relative max-w-full h-auto mb-10">
-          {/* <Image
-            className="w-full h-auto rounded-lg"
-            src={image}
-            width="0"
-            height="0"
-            sizes="100vw"
-            alt={slug}
-          /> */}
-        </div>
-
-        {/* <div className="text-left">{parse(content)}</div> */}
+        <Skeleton className="mt-10" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
+        <Skeleton className="mt-1" height={15} />
       </div>
     </div>
   </main>

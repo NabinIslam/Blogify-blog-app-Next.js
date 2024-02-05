@@ -5,13 +5,14 @@ import FilterBlogs from '@/components/FilterBlogs';
 import BlogsContainer from '@/components/BlogsContainer';
 import HeroSection from '@/components/HeroSection';
 import HomePostsSkeleton from './loading';
+import Header from '@/components/Header';
 
 const HomePage = () => {
   const [sortBy, setSortBy] = useState('');
   const [filterBy, setFilterBy] = useState('');
 
   return (
-    <main className="">
+    <main>
       <HeroSection />
       <div className="container mx-auto px-5 py-10">
         <FilterBlogs setSortBy={setSortBy} setFilterBy={setFilterBy} />

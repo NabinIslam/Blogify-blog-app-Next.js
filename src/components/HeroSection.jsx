@@ -10,15 +10,15 @@ const lemon = Lemon({
 const HeroSection = () => {
   return (
     <section className="h-screen w-full">
-      <div className="absolute top-0 left-0 w-full h-full bg-[rgba(0,0,0,.4)]"></div>
+      <div className="absolute top-0 left-0 w-full h-screen bg-[rgba(0,0,0,.4)]"></div>
       <video
-        className="w-full h-full object-cover"
+        className="w-full h-screen object-cover"
         src="/people.mp4"
         autoPlay
         loop
         muted
       />
-      <div className="absolute w-full h-full top-0 flex flex-col justify-center items-center text-white text-center">
+      <div className="absolute w-full h-screen top-0 flex flex-col justify-center items-center text-white text-center">
         <h1 className={`font-bold text-5xl lg:text-6xl ${lemon.className}`}>
           Welcome to Blogify
         </h1>
