@@ -27,9 +27,9 @@ const PostBlog = () => {
   } = useQuery({
     queryKey: ['categories'],
     queryFn: () =>
-      fetch(
-        'https://blogify-blog-app-server-production.up.railway.app/api/categories'
-      ).then(res => res.json()),
+      fetch('https://blogify-r01e.onrender.com/api/categories').then(res =>
+        res.json()
+      ),
   });
 
   const imgHostKey = process.env.NEXT_PUBLIC_imgBB_api_key;
@@ -64,16 +64,13 @@ const PostBlog = () => {
             },
           };
 
-          fetch(
-            'https://blogify-blog-app-server-production.up.railway.app/api/posts',
-            {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(post),
-            }
-          )
+          fetch('https://blogify-r01e.onrender.com/api/posts', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(post),
+          })
             .then(res => res.json())
             .then(result => {
               if (result.success) {
@@ -90,8 +87,6 @@ const PostBlog = () => {
         }
       });
   };
-
-  if (isLoading) return <Loading />;
 
   return (
     <main>

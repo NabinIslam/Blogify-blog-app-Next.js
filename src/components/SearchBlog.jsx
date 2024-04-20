@@ -8,9 +8,9 @@ const SearchBlog = () => {
   const { data } = useQuery({
     queryKey: ['products'],
     queryFn: () =>
-      fetch(
-        `https://blogify-blog-app-server-production.up.railway.app/api/posts`
-      ).then(res => res.json()),
+      fetch(`https://blogify-r01e.onrender.com/api/posts`).then(res =>
+        res.json()
+      ),
   });
   const [selected, setSelected] = useState(data?.posts);
   const [query, setQuery] = useState('');

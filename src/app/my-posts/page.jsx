@@ -23,7 +23,7 @@ const MyPostsPage = () => {
     queryKey: ['posts'],
     queryFn: () =>
       fetch(
-        `https://blogify-blog-app-server-production.up.railway.app/api/posts/email/${user?.primaryEmailAddress?.emailAddress}`
+        `https://blogify-r01e.onrender.com/api/posts/email/${user?.primaryEmailAddress?.emailAddress}`
       ).then(res => res.json()),
   });
 
