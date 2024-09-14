@@ -1,6 +1,6 @@
-import Blog from '@/models/blog';
-import dbConnect from '@/utils/dbConnect';
-import { NextResponse } from 'next/server';
+import Blog from "@/models/blog";
+import dbConnect from "@/utils/dbConnect";
+import { NextResponse } from "next/server";
 
 export async function GET(request, { params }) {
   const { id } = params;

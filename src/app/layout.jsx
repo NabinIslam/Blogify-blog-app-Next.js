@@ -1,17 +1,17 @@
-import Header from '@/components/Header';
-import './globals.css';
-import { Poppins } from 'next/font/google';
-import { Toaster } from 'react-hot-toast';
-import FooterComponent from '@/components/FooterComponent';
-import TanstackQueryProvider from '../providers/TanstackQueryProvider';
-import ScrollToTopButton from '../ui/ScrollToTopButton';
-import { ClerkProvider } from '@clerk/nextjs';
-import { SkeletonTheme } from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import Header from "@/components/Header";
+import "./globals.css";
+import { Montserrat, Poppins } from "next/font/google";
+import { Toaster } from "react-hot-toast";
+import FooterComponent from "@/components/FooterComponent";
+import TanstackQueryProvider from "../providers/TanstackQueryProvider";
+import ScrollToTopButton from "../ui/ScrollToTopButton";
+import { ClerkProvider } from "@clerk/nextjs";
+import { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata = {
@@ -23,7 +23,10 @@ export default function RootLayout({ children }) {
     <SkeletonTheme baseColor="#F0F0F0" highlightColor="#fff">
       <ClerkProvider>
         <html lang="en">
-          <body className={poppins.className} suppressHydrationWarning={true}>
+          <body
+            className={montserrat.className}
+            suppressHydrationWarning={true}
+          >
             <TanstackQueryProvider>
               <Header />
               {children}
@@ -32,19 +35,19 @@ export default function RootLayout({ children }) {
                 position="top-center"
                 toastOptions={{
                   // Define default options
-                  className: '',
+                  className: "",
                   duration: 5000,
                   style: {
-                    background: '#363636',
-                    color: '#fff',
+                    background: "#363636",
+                    color: "#fff",
                   },
 
                   // Default options for specific types
                   success: {
                     duration: 3000,
                     theme: {
-                      primary: 'green',
-                      secondary: 'black',
+                      primary: "green",
+                      secondary: "black",
                     },
                   },
                 }}

@@ -1,21 +1,21 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { Button, Label, TextInput, Textarea } from 'flowbite-react';
-import { useRouter } from 'next/navigation';
-import { toast } from 'react-hot-toast';
-import Loading from './loading';
-import { useQuery } from '@tanstack/react-query';
+import React, { useState } from "react";
+import { Button, Label, TextInput, Textarea } from "flowbite-react";
+import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
+import Loading from "./loading";
+import { useQuery } from "@tanstack/react-query";
 
 const EditPostPage = ({ id }) => {
   const navigate = useRouter();
   const [loading, setLoading] = useState(false);
   const { data: post = [] } = useQuery({
-    queryKey: ['post'],
-    queryFn: () => fetch(`/api/v1/blogs/${id}`).then(res => res.json()),
+    queryKey: ["post"],
+    queryFn: () => fetch(`/api/v1/blogs/${id}`).then((res) => res.json()),
   });
 
-  const handleEditPost = event => {
+  const handleEditPost = (event) => {
     event.preventDefault();
     const form = event.target;
     const title = form.title.value;
@@ -24,20 +24,20 @@ const EditPostPage = ({ id }) => {
     const editedPost = { title, content };
 
     fetch(`/api/v1/blogs/${id}`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: {
-        'Content-type': 'application/json',
+        "Content-type": "application/json",
       },
       body: JSON.stringify(editedPost),
     })
-      .then(res => {
+      .then((res) => {
         setLoading(true);
         return res.json();
       })
-      .then(data => {
+      .then((data) => {
         if (data.acknowledged) {
-          toast.success('Post updated successfully');
-          navigate.push('/my-posts');
+          toast.success("Post updated successfully");
+          navigate.push("/my-posts");
           setLoading(false);
         }
       });
@@ -49,10 +49,10 @@ const EditPostPage = ({ id }) => {
 
   return (
     <main>
-      <div className="container mx-auto py-20 px-4">
-        <h1 className="text-center font-bold text-4xl">Edit your post</h1>
+      <div className="container mx-auto px-4 py-20">
+        <h1 className="text-center text-4xl font-bold">Edit your post</h1>
         <form
-          className="max-w-md mx-auto my-10"
+          className="mx-auto my-10 max-w-md"
           action=""
           onSubmit={handleEditPost}
         >
@@ -68,7 +68,7 @@ const EditPostPage = ({ id }) => {
               required
             />
           </div>
-          <div className="max-w-md mb-5" id="textarea">
+          <div className="mb-5 max-w-md" id="textarea">
             <div className="mb-2 block">
               <Label htmlFor="content" value="Content" />
             </div>

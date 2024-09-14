@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import EditPostFormSkeleton from '@/skeletons/EditPostFormSkeleton';
-import { useQuery } from '@tanstack/react-query';
+import EditPostFormSkeleton from "@/skeletons/EditPostFormSkeleton";
+import { useQuery } from "@tanstack/react-query";
 import {
   Button,
   FileInput,
@@ -9,11 +9,11 @@ import {
   Modal,
   Select,
   TextInput,
-} from 'flowbite-react';
-import dynamic from 'next/dynamic';
-import { useMemo, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import 'react-quill/dist/quill.snow.css';
+} from "flowbite-react";
+import dynamic from "next/dynamic";
+import { useMemo, useState } from "react";
+import { useForm } from "react-hook-form";
+import "react-quill/dist/quill.snow.css";
 
 const EditPostModal = ({
   showPostEditModal,
@@ -22,20 +22,20 @@ const EditPostModal = ({
   refetch,
 }) => {
   const { handleSubmit, reset, register } = useForm();
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState("");
   const ReactQuill = useMemo(
-    () => dynamic(() => import('react-quill'), { ssr: false }),
-    []
+    () => dynamic(() => import("react-quill"), { ssr: false }),
+    [],
   );
   const {
     data: post = [],
     isLoading: isPostLoading,
     isFetching: isPostFetching,
   } = useQuery({
-    queryKey: ['post'],
+    queryKey: ["post"],
     queryFn: () =>
-      fetch(`https://blogify-r01e.onrender.com/api/posts/${postId}`).then(res =>
-        res.json()
+      fetch(`https://blogify-r01e.onrender.com/api/posts/${postId}`).then(
+        (res) => res.json(),
       ),
   });
 
@@ -44,10 +44,10 @@ const EditPostModal = ({
     isLoading: isCategoriesLoading,
     isFetching: isCategoriesFetching,
   } = useQuery({
-    queryKey: ['categories'],
+    queryKey: ["categories"],
     queryFn: () =>
-      fetch('https://blogify-r01e.onrender.com/api/categories').then(res =>
-        res.json()
+      fetch("https://blogify-r01e.onrender.com/api/categories").then((res) =>
+        res.json(),
       ),
   });
   console.log(post);
@@ -69,7 +69,7 @@ const EditPostModal = ({
                 <Label htmlFor="title" value="Title" />
               </div>
               <TextInput
-                {...register('title')}
+                {...register("title")}
                 type="text"
                 defaultValue={post?.post?.title}
                 required
@@ -80,7 +80,7 @@ const EditPostModal = ({
                 <Label htmlFor="content" value="Content" />
               </div>
               <ReactQuill
-                className="h-[300px] w-full block"
+                className="block h-[300px] w-full"
                 theme="snow"
                 defaultValue={post?.post?.content}
                 value={content}
@@ -91,8 +91,8 @@ const EditPostModal = ({
               <div className="mb-2 block">
                 <Label htmlFor="category" value="Category" required />
               </div>
-              <Select {...register('category')}>
-                {categories?.categories?.map(category => (
+              <Select {...register("category")}>
+                {categories?.categories?.map((category) => (
                   <option value={category._id} key={category._id}>
                     {category.name}
                   </option>
@@ -104,7 +104,7 @@ const EditPostModal = ({
               <div className="mb-2 block">
                 <Label htmlFor="uploadThumnail" value="Upload Thumbnail" />
               </div>
-              <FileInput {...register('image')} required />
+              <FileInput {...register("image")} required />
             </div>
             <Button gradientDuoTone="purpleToBlue" type="submit">
               Post

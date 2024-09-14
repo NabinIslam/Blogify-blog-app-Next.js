@@ -1,15 +1,14 @@
-'use client';
+"use client";
 
-import { Suspense, useState } from 'react';
-import FilterBlogs from '@/components/FilterBlogs';
-import BlogsContainer from '@/components/BlogsContainer';
-import HeroSection from '@/components/HeroSection';
-import HomePostsSkeleton from './loading';
-import Header from '@/components/Header';
+import { Suspense, useState } from "react";
+import FilterBlogs from "@/components/FilterBlogs";
+import BlogsContainer from "@/components/BlogsContainer";
+import HeroSection from "@/components/HeroSection";
+import HomePostsSkeleton from "@/components/skeletons/HomePostsSkeleton";
 
 const HomePage = () => {
-  const [sortBy, setSortBy] = useState('');
-  const [filterBy, setFilterBy] = useState('');
+  const [sortBy, setSortBy] = useState("");
+  const [filterBy, setFilterBy] = useState("");
 
   return (
     <main>

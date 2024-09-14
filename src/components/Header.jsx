@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { Avatar, Button, Dropdown } from 'flowbite-react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
-import { useClerk, useUser } from '@clerk/nextjs';
-import SearchBlog from './SearchBlog';
-import toast from 'react-hot-toast';
+import { Avatar, Button, Dropdown } from "flowbite-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { useClerk, useUser } from "@clerk/nextjs";
+import SearchBlog from "./SearchBlog";
+import toast from "react-hot-toast";
 
 const Header = () => {
   const { user } = useUser();
@@ -14,9 +14,9 @@ const Header = () => {
   const router = useRouter();
 
   return (
-    <header className="border-b sticky top-0 z-50 bg-white">
-      <div className="container mx-auto flex justify-between items-center py-2 px-2">
-        <div className="basis-4/12 pl-2 flex">
+    <header className="sticky top-0 z-50 border-b bg-white">
+      <div className="container mx-auto flex items-center justify-between px-2 py-2">
+        <div className="flex basis-4/12 pl-2">
           <Link className="inline-flex" href="/">
             <Image
               className="h-6 w-auto"
@@ -29,10 +29,10 @@ const Header = () => {
           </Link>
         </div>
 
-        <div className="basis-4/12 hidden md:block">
+        <div className="hidden basis-4/12 md:block">
           <SearchBlog />
         </div>
-        <div className="basis-4/12 flex items-center justify-end">
+        <div className="flex basis-4/12 items-center justify-end">
           {user && (
             <Dropdown
               arrowIcon={false}
@@ -65,7 +65,7 @@ const Header = () => {
               <Dropdown.Item
                 onClick={() =>
                   signOut(() => {
-                    router.push('/');
+                    router.push("/");
                     toast.success(`Logged out successfully`);
                   })
                 }
@@ -76,7 +76,7 @@ const Header = () => {
           )}
 
           {!user && (
-            <Link href={'/login'}>
+            <Link href={"/login"}>
               <Button gradientDuoTone="purpleToBlue" size="sm">
                 Login
               </Button>

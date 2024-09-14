@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { ColorRing } from 'react-loader-spinner';
+import { ColorRing } from "react-loader-spinner";
 
 const Loading = () => (
-  <div className="h-screen flex justify-center items-center">
+  <div className="flex h-screen items-center justify-center">
     <ColorRing />
   </div>
 );

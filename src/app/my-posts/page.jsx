@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { useUser } from '@clerk/nextjs';
-import { useQuery } from '@tanstack/react-query';
-import { Button, Table } from 'flowbite-react';
-import Link from 'next/link';
-import { useState } from 'react';
-import Loading from './loading';
-import ConfirmDelete from '@/components/ConfirmDelete';
-import EditPostModal from '@/components/EditPostModal';
+import { useUser } from "@clerk/nextjs";
+import { useQuery } from "@tanstack/react-query";
+import { Button, Table } from "flowbite-react";
+import Link from "next/link";
+import { useState } from "react";
+import Loading from "./loading";
+import ConfirmDelete from "@/components/ConfirmDelete";
+import EditPostModal from "@/components/EditPostModal";
 
 const MyPostsPage = () => {
   const { user } = useUser();
@@ -20,11 +20,11 @@ const MyPostsPage = () => {
     isFetching,
     refetch,
   } = useQuery({
-    queryKey: ['posts'],
+    queryKey: ["posts"],
     queryFn: () =>
       fetch(
-        `https://blogify-r01e.onrender.com/api/posts/email/${user?.primaryEmailAddress?.emailAddress}`
-      ).then(res => res.json()),
+        `https://blogify-r01e.onrender.com/api/posts/email/${user?.primaryEmailAddress?.emailAddress}`,
+      ).then((res) => res.json()),
   });
 
   if (isFetching) return <Loading />;
@@ -33,13 +33,13 @@ const MyPostsPage = () => {
   return (
     <main className="py-20">
       <div className="container mx-auto">
-        <h1 className="text-center font-bold text-4xl mb-20">Your Posts</h1>
+        <h1 className="mb-20 text-center text-4xl font-bold">Your Posts</h1>
         {posts?.posts?.length === 0 ? (
           <h1 className="text-center">
-            You have no post.{' '}
+            You have no post.{" "}
             <Link className="underline" href="/post-blog">
               Click here
-            </Link>{' '}
+            </Link>{" "}
             to post a blog.
           </h1>
         ) : (

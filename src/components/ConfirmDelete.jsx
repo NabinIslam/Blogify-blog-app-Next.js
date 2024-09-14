@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { Button, Modal } from 'flowbite-react';
-import { toast } from 'react-hot-toast';
+import { Button, Modal } from "flowbite-react";
+import { toast } from "react-hot-toast";
 
 const ConfirmDelete = ({
   showPostDeleteModal,
@@ -11,13 +11,13 @@ const ConfirmDelete = ({
 }) => {
   const handleDeletePost = () => {
     fetch(`https://blogify-r01e.onrender.com/api/posts/${deletingPostId}`, {
-      method: 'DELETE',
+      method: "DELETE",
     })
-      .then(res => res.json())
-      .then(result => {
+      .then((res) => res.json())
+      .then((result) => {
         if (result.success) {
           refetch();
-          toast.success('Post deleted successfully');
+          toast.success("Post deleted successfully");
         }
       });
   };

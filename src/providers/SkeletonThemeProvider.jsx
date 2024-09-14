@@ -1,5 +1,4 @@
-
-import { SkeletonTheme } from 'react-loading-skeleton';
+import { SkeletonTheme } from "react-loading-skeleton";
 
 const SkeletonThemeProvider = ({ Children }) => {
   return (

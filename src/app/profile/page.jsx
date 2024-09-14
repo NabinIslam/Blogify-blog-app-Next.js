@@ -1,9 +1,9 @@
-import { UserProfile } from '@clerk/nextjs';
-import { Suspense } from 'react';
-import Loading from './loading';
+import { UserProfile } from "@clerk/nextjs";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export const metadata = {
-  title: 'Blogify | Profile',
+  title: "Blogify | Profile",
 };
 
 const Profile = () => {

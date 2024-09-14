@@ -1,6 +1,6 @@
-import dbConnect from '@/utils/dbConnect';
-import Blog from '@/models/blog';
-import { NextResponse } from 'next/server';
+import dbConnect from "@/utils/dbConnect";
+import Blog from "@/models/blog";
+import { NextResponse } from "next/server";
 
 export async function POST(req, res) {
   try {
@@ -12,7 +12,7 @@ export async function POST(req, res) {
 
     return NextResponse.json({
       success: true,
-      message: 'Blog added successfully!',
+      message: "Blog added successfully!",
       status: 200,
     });
   } catch (error) {
@@ -29,13 +29,13 @@ export async function GET(req, res) {
     await dbConnect();
 
     const url = new URL(req.url);
-    const sortQuery = url.searchParams.get('sort');
+    const sortQuery = url.searchParams.get("sort");
 
     let sort = { createdAt: -1 };
 
-    if (sortQuery === 'latest') sort = { createdAt: -1 };
+    if (sortQuery === "latest") sort = { createdAt: -1 };
 
-    if (sortQuery === 'oldest') sort = { createdAt: 1 };
+    if (sortQuery === "oldest") sort = { createdAt: 1 };
 
     const blogs = await Blog.find({}).sort(sort);
     return NextResponse.json({

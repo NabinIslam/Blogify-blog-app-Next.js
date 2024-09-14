@@ -1,6 +1,6 @@
-import dbConnect from '@/utils/dbConnect';
-import Favorite from '@/models/favorite';
-import { NextResponse } from 'next/server';
+import dbConnect from "@/utils/dbConnect";
+import Favorite from "@/models/favorite";
+import { NextResponse } from "next/server";
 
 export async function POST(req, res) {
   try {
@@ -10,7 +10,7 @@ export async function POST(req, res) {
     await Favorite.create(body);
 
     return NextResponse.json({
-      message: 'Blog added to favorites successfully!',
+      message: "Blog added to favorites successfully!",
       status: 200,
     });
   } catch (e) {

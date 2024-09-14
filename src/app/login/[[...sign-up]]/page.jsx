@@ -1,7 +1,7 @@
-import { SignIn } from '@clerk/nextjs';
+import { SignIn } from "@clerk/nextjs";
 
 export const metadata = {
-  title: 'Blogify | Login',
+  title: "Blogify | Login",
 };
 
 const Login = () => {

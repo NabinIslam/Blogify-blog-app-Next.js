@@ -1,8 +1,8 @@
-import EditPostPage from '@/app/EditPostPage';
-import React from 'react';
+import EditPostPage from "@/app/EditPostPage";
+import React from "react";
 
 export const metadata = {
-  title: 'Blogify | Edit post',
+  title: "Blogify | Edit post",
 };
 
 const EditPost = ({ params }) => {

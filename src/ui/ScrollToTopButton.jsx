@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import ScrollToTop from 'react-scroll-to-top';
+import ScrollToTop from "react-scroll-to-top";
 
 const ScrollToTopButton = () => (
-  <ScrollToTop className="shadow-2xl pl-[9px]" smooth />
+  <ScrollToTop className="pl-[9px] shadow-2xl" smooth />
 );
 
 export default ScrollToTopButton;

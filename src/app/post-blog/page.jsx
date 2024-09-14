@@ -1,23 +1,23 @@
-'use client';
+"use client";
 
-import { useUser } from '@clerk/nextjs';
-import { Suspense, useMemo, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { Button, FileInput, Label, Select, TextInput } from 'flowbite-react';
-import dynamic from 'next/dynamic';
-import 'react-quill/dist/quill.snow.css';
-import slugify from 'slugify';
-import toast from 'react-hot-toast';
-import { useQuery } from '@tanstack/react-query';
-import Loading from './loading';
+import { useUser } from "@clerk/nextjs";
+import { Suspense, useMemo, useState } from "react";
+import { useForm } from "react-hook-form";
+import { Button, FileInput, Label, Select, TextInput } from "flowbite-react";
+import dynamic from "next/dynamic";
+import "react-quill/dist/quill.snow.css";
+import slugify from "slugify";
+import toast from "react-hot-toast";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "./loading";
 
 const PostBlog = () => {
   const { user } = useUser();
   const { handleSubmit, reset, register } = useForm();
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState("");
   const ReactQuill = useMemo(
-    () => dynamic(() => import('react-quill'), { ssr: false }),
-    []
+    () => dynamic(() => import("react-quill"), { ssr: false }),
+    [],
   );
 
   const {
@@ -25,30 +25,30 @@ const PostBlog = () => {
     isLoading,
     isFetching,
   } = useQuery({
-    queryKey: ['categories'],
+    queryKey: ["categories"],
     queryFn: () =>
-      fetch('https://blogify-r01e.onrender.com/api/categories').then(res =>
-        res.json()
+      fetch("https://blogify-r01e.onrender.com/api/categories").then((res) =>
+        res.json(),
       ),
   });
 
   const imgHostKey = process.env.NEXT_PUBLIC_imgBB_api_key;
 
-  const handlePost = data => {
+  const handlePost = (data) => {
     const image = data.image[0];
     const formData = new FormData();
-    formData.append('image', image);
+    formData.append("image", image);
 
     const url = `https://api.imgbb.com/1/upload?key=${imgHostKey}`;
 
     fetch(url, {
-      method: 'POST',
+      method: "POST",
       body: formData,
     })
-      .then(res => {
+      .then((res) => {
         return res.json();
       })
-      .then(imgData => {
+      .then((imgData) => {
         if (imgData.success) {
           const post = {
             title: data.title,
@@ -64,25 +64,25 @@ const PostBlog = () => {
             },
           };
 
-          fetch('https://blogify-r01e.onrender.com/api/posts', {
-            method: 'POST',
+          fetch("https://blogify-r01e.onrender.com/api/posts", {
+            method: "POST",
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
             body: JSON.stringify(post),
           })
-            .then(res => res.json())
-            .then(result => {
+            .then((res) => res.json())
+            .then((result) => {
               if (result.success) {
                 reset();
-                setContent('');
-                toast.success('Post added successfully');
+                setContent("");
+                toast.success("Post added successfully");
               }
             })
-            .catch(error =>
+            .catch((error) =>
               toast.error(
-                `Could not post the article :( Something went wrong!!`
-              )
+                `Could not post the article :( Something went wrong!!`,
+              ),
             );
         }
       });
@@ -90,8 +90,8 @@ const PostBlog = () => {
 
   return (
     <main>
-      <div className="container mx-auto py-20 px-4">
-        <h1 className="text-center font-bold text-4xl">
+      <div className="container mx-auto px-4 py-20">
+        <h1 className="text-center text-4xl font-bold">
           What&apos;s on your mind?
         </h1>
         <Suspense fallback={<Loading />}>
@@ -100,14 +100,14 @@ const PostBlog = () => {
               <div className="mb-2 block">
                 <Label htmlFor="title" value="Title" />
               </div>
-              <TextInput {...register('title')} type="text" required />
+              <TextInput {...register("title")} type="text" required />
             </div>
             <div className="mb-5 h-96" id="textarea">
               <div className="mb-2 block">
                 <Label htmlFor="content" value="Content" />
               </div>
               <ReactQuill
-                className="h-[300px] w-full block"
+                className="block h-[300px] w-full"
                 theme="snow"
                 value={content}
                 onChange={setContent}
@@ -117,8 +117,8 @@ const PostBlog = () => {
               <div className="mb-2 block">
                 <Label htmlFor="category" value="Category" required />
               </div>
-              <Select {...register('category')}>
-                {categories?.categories?.map(category => (
+              <Select {...register("category")}>
+                {categories?.categories?.map((category) => (
                   <option value={category._id} key={category._id}>
                     {category.name}
                   </option>
@@ -130,7 +130,7 @@ const PostBlog = () => {
               <div className="mb-2 block">
                 <Label htmlFor="uploadThumnail" value="Upload Thumbnail" />
               </div>
-              <FileInput {...register('image')} required />
+              <FileInput {...register("image")} required />
             </div>
             <Button gradientDuoTone="purpleToBlue" type="submit">
               Post
