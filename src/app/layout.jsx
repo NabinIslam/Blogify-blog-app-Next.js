@@ -1,6 +1,5 @@
-import Header from "@/components/Header";
 import "./globals.css";
-import { Montserrat, Poppins } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import FooterComponent from "@/components/FooterComponent";
 import TanstackQueryProvider from "../providers/TanstackQueryProvider";
@@ -8,6 +7,7 @@ import ScrollToTopButton from "../ui/ScrollToTopButton";
 import { ClerkProvider } from "@clerk/nextjs";
 import { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import Header from "@/components/common/Header";
 
 const montserrat = Montserrat({
   subsets: ["latin"],

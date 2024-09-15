@@ -5,8 +5,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useClerk, useUser } from "@clerk/nextjs";
-import SearchBlog from "./SearchBlog";
 import toast from "react-hot-toast";
+import SearchBlog from "../SearchBlog";
 
 const Header = () => {
   const { user } = useUser();
