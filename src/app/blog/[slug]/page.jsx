@@ -26,13 +26,6 @@ const BlogDetails = async ({ params }) => {
 
   const { title, content, image, author, createdAt } = data?.post;
 
-  const dateObject = new Date(createdAt);
-  const year = dateObject.getFullYear();
-  const month = dateObject.getMonth() + 1;
-  const monthName = dateObject.toLocaleString("en-US", { month: "long" });
-  const day = dateObject.getDate();
-  const formattedDate = `${monthName} ${day}, ${year}`;
-
   return (
     <main>
       <div className="container mx-auto px-5 py-20">
